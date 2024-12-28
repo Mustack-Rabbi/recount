@@ -8,10 +8,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int increment = 0;
+  bool iconButtonAdd = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+          child: ListView(children: [
+        DrawerHeader(
+          decoration: BoxDecoration(
+            color: Colors.teal,
+          ),
+          child: Text(
+            "Recount",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            ),
+          ),
+        ),
+        ListTile(
+            title: Text("Settings"),
+            leading: Icon(
+              Icons.settings,
+              color: Colors.teal,
+            ))
+      ])),
       appBar: AppBar(
+        actions: [
+          IconButton(
+              icon: Icon(iconButtonAdd ? Icons.add : Icons.remove),
+              onPressed: () {
+                setState(() {
+                  iconButtonAdd = !iconButtonAdd;
+                });
+              })
+        ],
         title: Text(
           "Recount",
           style: TextStyle(color: Colors.white),
@@ -47,7 +80,40 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Increment & Decrement"),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.settings))
+                    IconButton(
+                        onPressed: () {
+                          showAdaptiveDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Settings"),
+                                  actions: [
+                                    Row(
+                                      children: [
+                                        Icon(Icons.remove),
+                                        Text("Add Icon"),
+                                        IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                iconButtonAdd = !iconButtonAdd;
+                                              });
+                                            },
+                                            icon: Icon(Icons.done))
+                                      ],
+                                    ),
+                                    Icon(Icons.add),
+                                    Icon(Icons.add),
+                                    Icon(Icons.add),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("Close")),
+                                  ],
+                                );
+                              });
+                        },
+                        icon: Icon(Icons.settings))
                   ],
                 ),
                 Expanded(
@@ -57,9 +123,22 @@ class _HomePageState extends State<HomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          IconButton(onPressed: () {}, icon: Icon(Icons.add)),
-                          Text("0"),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.remove))
+                          IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  increment--;
+                                });
+                              },
+                              icon: Icon(Icons.remove)),
+                          Text(increment.toString()),
+                          if (iconButtonAdd == true)
+                            IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    increment++;
+                                  });
+                                },
+                                icon: Icon(Icons.add))
                         ],
                       ),
                     ],
