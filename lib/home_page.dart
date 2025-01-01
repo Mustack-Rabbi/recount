@@ -8,6 +8,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Color mintGreen = Color(0xFF97dbaf);
+  Color lightLime = Color(0xFFc2e6ae);
+  Color pastelYellow = Color(0xFFf3e1a7);
+  Color blushPink = Color(0xFFf4bbba);
+
   int increment = 0;
   bool iconButtonAdd = true;
 
@@ -66,85 +71,106 @@ class _HomePageState extends State<HomePage> {
             //   ),
             //   textAlign: TextAlign.start,
             // ),
-
             Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.red.withOpacity(.5),
-              ),
-              height: 200,
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              width: double.infinity,
-              child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Increment & Decrement"),
-                    IconButton(
-                        onPressed: () {
-                          showAdaptiveDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text("Settings"),
-                                  actions: [
-                                    Row(
-                                      children: [
-                                        Icon(Icons.remove),
-                                        Text("Add Icon"),
-                                        IconButton(
+              color: mintGreen,
+              padding: EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Container(
+                    // color: Colors.red.withOpacity(.6),
+                    height: 40,
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Increment & Decrement"),
+                        IconButton(
+                            onPressed: () {
+                              showAdaptiveDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Settings"),
+                                      actions: [
+                                        Row(
+                                          children: [
+                                            Icon(Icons.remove),
+                                            Text("Add Icon"),
+                                            IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    iconButtonAdd =
+                                                        !iconButtonAdd;
+                                                  });
+                                                },
+                                                icon: Icon(Icons.done))
+                                          ],
+                                        ),
+                                        Icon(Icons.add),
+                                        Icon(Icons.add),
+                                        Icon(Icons.add),
+                                        TextButton(
                                             onPressed: () {
-                                              setState(() {
-                                                iconButtonAdd = !iconButtonAdd;
-                                              });
+                                              Navigator.pop(context);
                                             },
-                                            icon: Icon(Icons.done))
+                                            child: Text("Close")),
                                       ],
-                                    ),
-                                    Icon(Icons.add),
-                                    Icon(Icons.add),
-                                    Icon(Icons.add),
-                                    TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text("Close")),
-                                  ],
-                                );
-                              });
-                        },
-                        icon: Icon(Icons.settings))
-                  ],
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  increment--;
-                                });
-                              },
-                              icon: Icon(Icons.remove)),
-                          Text(increment.toString()),
-                          if (iconButtonAdd == true)
-                            IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    increment++;
+                                    );
                                   });
-                                },
-                                icon: Icon(Icons.add))
-                        ],
-                      ),
-                    ],
+                            },
+                            icon: Icon(Icons.settings))
+                      ],
+                    ),
                   ),
-                )
-              ]),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: lightLime,
+                    ),
+                    height: 200,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8,
+                    ),
+                    width: double.infinity,
+                    child: Column(children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        increment--;
+                                      });
+                                    },
+                                    icon: Icon(Icons.remove)),
+                                Text(increment.toString()),
+                                if (iconButtonAdd == true)
+                                  IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          increment++;
+                                        });
+                                      },
+                                      icon: Icon(Icons.add))
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    ]),
+                  ),
+                  Container(
+                    // color: Colors.teal,
+                    height: 40,
+                    width: double.infinity,
+                    child: Text("bottom buttons"),
+                  ),
+                ],
+              ),
             ),
 
             // Section 2
