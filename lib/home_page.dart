@@ -15,6 +15,8 @@ class _HomePageState extends State<HomePage> {
 
   int increment = 0;
   bool iconButtonAdd = true;
+  bool showDown = false;
+  bool widgetEdite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,16 +63,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Section 1
-            // Text(
-            //   "Number Count",
-            //   style: TextStyle(
-            //     fontWeight: FontWeight.bold,
-            //     fontSize: 20,
-            //     color: Colors.teal,
-            //   ),
-            //   textAlign: TextAlign.start,
-            // ),
             Container(
               color: mintGreen,
               padding: EdgeInsets.all(8),
@@ -118,23 +110,22 @@ class _HomePageState extends State<HomePage> {
                                     );
                                   });
                             },
-                            icon: Icon(Icons.settings))
+                            icon: Icon(Icons.more_vert))
                       ],
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: lightLime,
-                    ),
-                    height: 200,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8,
-                    ),
-                    width: double.infinity,
-                    child: Column(children: [
-                      Expanded(
-                        child: Column(
+                  Stack(children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: lightLime,
+                      ),
+                      height: 200,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8,
+                      ),
+                      width: double.infinity,
+                      child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Row(
@@ -157,18 +148,78 @@ class _HomePageState extends State<HomePage> {
                                       },
                                       icon: Icon(Icons.add))
                               ],
-                            ),
-                          ],
+                            )
+                          ]),
+                    ),
+                    if (showDown == false)
+                      Container(
+                        height: 200,
+                        // color: Colors.teal,
+                        alignment: Alignment.bottomRight,
+                        child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              showDown = !showDown;
+                            });
+                          },
+                          icon: Icon(Icons.arrow_drop_down),
                         ),
                       )
-                    ]),
-                  ),
-                  Container(
-                    // color: Colors.teal,
-                    height: 40,
-                    width: double.infinity,
-                    child: Text("bottom buttons"),
-                  ),
+                  ]),
+                  if (showDown == true)
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: lightLime,
+                      ),
+                      margin: EdgeInsets.symmetric(vertical: 5),
+                      height: 40,
+                      width: double.infinity,
+                      child: Center(
+                        child: Row(
+                          children: [
+                            Expanded(
+                                child: (widgetEdite == false)
+                                    ? Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(Icons.arrow_back)),
+                                          Text("1/3"),
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(Icons.arrow_forward)),
+                                        ],
+                                      )
+                                    : Center(child: Text("Change Widget"))),
+                            (widgetEdite == false)
+                                ? IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        widgetEdite = !widgetEdite;
+                                      });
+                                    },
+                                    icon: Icon(Icons.widgets))
+                                : IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        widgetEdite = !widgetEdite;
+                                      });
+                                    },
+                                    icon: Icon(Icons.done)),
+                            IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    showDown = !showDown;
+                                  });
+                                },
+                                icon: Icon(Icons.arrow_drop_up)),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
