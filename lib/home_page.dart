@@ -9,9 +9,30 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Color mintGreen = Color(0xFF97dbaf);
+  Color appColor = Colors.teal;
   Color lightLime = Color(0xFFc2e6ae);
   Color pastelYellow = Color(0xFFf3e1a7);
   Color blushPink = Color(0xFFf4bbba);
+
+  // Color
+
+  List<Color> colorLevel1 = [Color(0xFFF2CEFF), Color(0xFF), Color(0xFF)];
+  List<Color> colorLevel2 = [Color(0xFFE295FE), Color(0xFF), Color(0xFF)];
+  List<Color> colorLevel3 = [Color(0xFFCB40FC), Color(0xFF), Color(0xFF)];
+  List<Color> colorLevel4 = [Color(0xFFBB15F6), Color(0xFF), Color(0xFF)];
+  // List<Color> colorMain = [
+  //   Color(0xFFCB40FC),
+  //   Color(0xFFd669fe),
+  //   Color(0xFF),
+  //   Color(0xFF)
+  // ];
+  // List<Color> colorMain = [Color(0xFFd669fe), Color(0xFF), Color(0xFF)];
+
+  // Color outlineColor = Color(0xFF1a342d);
+  // Color containarColor = Color(0xFFf5f0ec);
+  // Color buttonColor = Color(0xFFdc9d00);
+
+  // Color textColor = Color(0xFF1a342d);
 
   int increment = 0;
   bool iconButtonAdd = true;
@@ -64,7 +85,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              color: mintGreen,
+              decoration: BoxDecoration(color: colorLevel3[0]),
               padding: EdgeInsets.all(8),
               child: Column(
                 children: [
@@ -73,44 +94,47 @@ class _HomePageState extends State<HomePage> {
                     height: 40,
                     width: double.infinity,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Increment & Decrement"),
-                        IconButton(
-                            onPressed: () {
-                              showAdaptiveDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title: Text("Settings"),
-                                      actions: [
-                                        Row(
-                                          children: [
-                                            Icon(Icons.remove),
-                                            Text("Add Icon"),
-                                            IconButton(
-                                                onPressed: () {
-                                                  setState(() {
-                                                    iconButtonAdd =
-                                                        !iconButtonAdd;
-                                                  });
-                                                },
-                                                icon: Icon(Icons.done))
-                                          ],
-                                        ),
-                                        Icon(Icons.add),
-                                        Icon(Icons.add),
-                                        Icon(Icons.add),
-                                        TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text("Close")),
-                                      ],
-                                    );
-                                  });
-                            },
-                            icon: Icon(Icons.more_vert))
+                        Text("Increment & Decrement",
+                            style: TextStyle(
+                                color: colorLevel1[0],
+                                fontWeight: FontWeight.bold)),
+                        // IconButton(
+                        //     onPressed: () {
+                        //       showAdaptiveDialog(
+                        //           context: context,
+                        //           builder: (context) {
+                        //             return AlertDialog(
+                        //               title: Text("Settings"),
+                        //               actions: [
+                        //                 Row(
+                        //                   children: [
+                        //                     Icon(Icons.remove),
+                        //                     Text("Add Icon"),
+                        //                     IconButton(
+                        //                         onPressed: () {
+                        //                           setState(() {
+                        //                             iconButtonAdd =
+                        //                                 !iconButtonAdd;
+                        //                           });
+                        //                         },
+                        //                         icon: Icon(Icons.done))
+                        //                   ],
+                        //                 ),
+                        //                 Icon(Icons.add),
+                        //                 Icon(Icons.add),
+                        //                 Icon(Icons.add),
+                        //                 TextButton(
+                        //                     onPressed: () {
+                        //                       Navigator.pop(context);
+                        //                     },
+                        //                     child: Text("Close")),
+                        //               ],
+                        //             );
+                        //           });
+                        //     },
+                        //     icon: Icon(Icons.more_vert))
                       ],
                     ),
                   ),
@@ -118,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: lightLime,
+                        color: Colors.white.withOpacity(.9),
                       ),
                       height: 200,
                       padding: EdgeInsets.symmetric(
@@ -137,8 +161,16 @@ class _HomePageState extends State<HomePage> {
                                         increment--;
                                       });
                                     },
-                                    icon: Icon(Icons.remove)),
-                                Text(increment.toString()),
+                                    icon: Icon(
+                                      Icons.remove,
+                                      color: colorLevel4[0],
+                                    )),
+                                Text(increment.toString(),
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black.withOpacity(.6),
+                                    )),
                                 if (iconButtonAdd == true)
                                   IconButton(
                                       onPressed: () {
@@ -146,7 +178,8 @@ class _HomePageState extends State<HomePage> {
                                           increment++;
                                         });
                                       },
-                                      icon: Icon(Icons.add))
+                                      icon: Icon(Icons.add,
+                                          color: colorLevel4[0])),
                               ],
                             )
                           ]),
@@ -162,7 +195,8 @@ class _HomePageState extends State<HomePage> {
                               showDown = !showDown;
                             });
                           },
-                          icon: Icon(Icons.arrow_drop_down),
+                          icon: Icon(Icons.arrow_drop_down,
+                              color: colorLevel4[0]),
                         ),
                       )
                   ]),
@@ -170,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: lightLime,
+                        color: colorLevel1[0],
                       ),
                       margin: EdgeInsets.symmetric(vertical: 5),
                       height: 40,
@@ -182,18 +216,38 @@ class _HomePageState extends State<HomePage> {
                                 child: (widgetEdite == false)
                                     ? Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                            MainAxisAlignment.spaceAround,
                                         children: [
                                           IconButton(
                                               onPressed: () {},
-                                              icon: Icon(Icons.arrow_back)),
-                                          Text("1/3"),
+                                              icon: Icon(
+                                                  Icons.arrow_back_ios_rounded,
+                                                  color: colorLevel4[0])),
+                                          Text(
+                                            "1/3",
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: Colors.black
+                                                    .withOpacity(.6),
+                                                fontWeight: FontWeight.w600),
+                                          ),
                                           IconButton(
                                               onPressed: () {},
-                                              icon: Icon(Icons.arrow_forward)),
+                                              icon: Icon(
+                                                Icons.arrow_forward_ios_rounded,
+                                                color: colorLevel4[0],
+                                              )),
                                         ],
                                       )
-                                    : Center(child: Text("Change Widget"))),
+                                    : Center(
+                                        child: Text(
+                                        "Change Widget",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            color:
+                                                Colors.black.withOpacity(.6)),
+                                      ))),
                             (widgetEdite == false)
                                 ? IconButton(
                                     onPressed: () {
@@ -201,21 +255,26 @@ class _HomePageState extends State<HomePage> {
                                         widgetEdite = !widgetEdite;
                                       });
                                     },
-                                    icon: Icon(Icons.widgets))
+                                    icon: Icon(
+                                      Icons.widgets,
+                                      color: colorLevel4[0],
+                                    ))
                                 : IconButton(
                                     onPressed: () {
                                       setState(() {
                                         widgetEdite = !widgetEdite;
                                       });
                                     },
-                                    icon: Icon(Icons.done)),
+                                    icon: Icon(Icons.done,
+                                        color: colorLevel4[0])),
                             IconButton(
                                 onPressed: () {
                                   setState(() {
                                     showDown = !showDown;
                                   });
                                 },
-                                icon: Icon(Icons.arrow_drop_up)),
+                                icon: Icon(Icons.arrow_drop_up,
+                                    color: colorLevel4[0])),
                           ],
                         ),
                       ),
