@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:recount/frame/frame_screen.dart';
 
+import 'inc_dec_screen_one.dart';
+import 'inc_dec_screen_two.dart';
+
 class IncDecScreen extends StatefulWidget {
   const IncDecScreen({
     super.key,
@@ -31,10 +34,8 @@ class _IncDecScreenState extends State<IncDecScreen> {
   // bool widgetEdite = false;
 
   List<Widget> screenList = [
-    Center(child: Text("01 screen")),
-    Center(
-      child: Text("02 screen"),
-    ),
+    IncDecScreenOne(),
+    IncDecScreenTwo(),
     Center(
       child: Text("03 screen"),
     ),
