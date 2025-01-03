@@ -110,18 +110,20 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: Colors.teal,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FrameScreen(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              IncDecScreenOne(),
 
-            // Section 2
-            Text(
-              "Button",
-            )
-          ],
+              // Section 2
+              Text(
+                "Button",
+              )
+            ],
+          ),
         ),
       ),
     );

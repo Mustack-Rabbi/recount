@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:recount/frame/frame_screen.dart';
 
-class IncDecScreenOne extends StatelessWidget {
-  final Color buttonColor;
-  IncDecScreenOne({super.key, required this.buttonColor});
+class IncDecScreenOne extends StatefulWidget {
+  const IncDecScreenOne({
+    super.key,
+  });
+
+  @override
+  State<IncDecScreenOne> createState() => _IncDecScreenOneState();
+}
+
+class _IncDecScreenOneState extends State<IncDecScreenOne> {
+  Map<String, Color> color = {
+    "lightPurpleColor": Color(0xFFF2CEFF),
+    "softPurpleColor": Color(0xFFE295FE),
+    "vibrantPurpleColor": Color(0xFFCB40FC),
+    "deepPurpleColor": Color(0xFFBB15F6),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -11,17 +25,18 @@ class IncDecScreenOne extends StatelessWidget {
     bool showDown = false;
     bool widgetEdite = false;
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white.withOpacity(.9),
-      ),
-      height: 200,
-      padding: EdgeInsets.symmetric(
-        horizontal: 8,
-      ),
-      width: double.infinity,
+      // decoration: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(10),
+      //   color: Colors.white.withOpacity(.9),
+      // ),
+      // // height: 200,
+      // padding: EdgeInsets.symmetric(
+      //   horizontal: 8,
+      // ),
+      // width: double.infinity,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Row(
+        FrameScreen(
+            displayScreen: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
@@ -32,13 +47,13 @@ class IncDecScreenOne extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.remove,
-                  color: buttonColor,
+                  color: color["deepPurpleColor"],
                 )),
             Text(increment.toString(),
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
-                  color: textColor["textPrimaryColor"],
+                  color: color["deepPurpleColor"],
                 )),
             if (iconButtonAdd == true)
               IconButton(
@@ -47,9 +62,9 @@ class IncDecScreenOne extends StatelessWidget {
                       increment++;
                     });
                   },
-                  icon: Icon(Icons.add, color: buttonColor)),
+                  icon: Icon(Icons.add, color: color["deepPurpleColor"])),
           ],
-        )
+        ))
       ]),
     );
   }

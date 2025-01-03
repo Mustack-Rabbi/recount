@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:recount/screen/increment_decrement/inc_dec_screen_one.dart';
 
 class FrameScreen extends StatefulWidget {
-  const FrameScreen({super.key});
+  final Widget displayScreen;
+  const FrameScreen({super.key, required this.displayScreen});
 
   @override
   State<FrameScreen> createState() => _FrameScreenState();
@@ -49,7 +51,7 @@ class _FrameScreenState extends State<FrameScreen> {
                     style: TextStyle(
                         color: color["lightPurpleColor"],
                         fontWeight: FontWeight.bold)),
-                // IconButton(
+
                 //     onPressed: () {
                 //       showAdaptiveDialog(
                 //           context: context,
@@ -88,7 +90,23 @@ class _FrameScreenState extends State<FrameScreen> {
             ),
           ),
           Stack(children: [
-          x
+            Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white.withOpacity(.9),
+                ),
+                height: 200,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8,
+                ),
+                width: double.infinity,
+                child: widget
+                    .displayScreen // ekhane ami digin korbo, ekhane user kaj korte parbe..
+                ),
+            // IconButton(
+            // IncDecScreenOne(
+            //     buttonColor: color["deepPurpleColor"]!,
+            //     textColor: textColor["textPrimaryColor"]!),
             if (showDown == false)
               Container(
                 height: 200,
