@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:recount/screen/increment_decrement/inc_dec_screen_one.dart';
 
 class FrameScreen extends StatefulWidget {
   final Widget displayScreen;
-  const FrameScreen({super.key, required this.displayScreen});
+  final int numberOfScreen;
+  final int initialScreen;
+  final VoidCallback previousScreen;
+  final VoidCallback nextScreen;
+  const FrameScreen(
+      {super.key,
+      required this.displayScreen,
+      required this.numberOfScreen,
+      required this.initialScreen,
+      required this.previousScreen,
+      required this.nextScreen});
 
   @override
   State<FrameScreen> createState() => _FrameScreenState();
@@ -135,29 +144,49 @@ class _FrameScreenState extends State<FrameScreen> {
               child: Center(
                 child: Row(
                   children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.more_vert,
+                            color: color["deepPurpleColor"])),
                     Expanded(
                         child: (widgetEdite == false)
                             ? Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(Icons.arrow_back_ios_rounded,
-                                          color: color["deepPurpleColor"])),
+                                  (widget.initialScreen > 0)
+                                      ? IconButton(
+                                          onPressed: widget.previousScreen,
+                                          icon: Icon(
+                                              Icons.arrow_back_ios_rounded,
+                                              color: color["deepPurpleColor"]))
+                                      : IconButton(
+                                          onPressed: null,
+                                          icon: Icon(
+                                            Icons.arrow_back_ios_rounded,
+                                            color: color["lightPurpleColor"],
+                                          )),
                                   Text(
-                                    "1/3",
+                                    "${widget.initialScreen + 1}/${widget.numberOfScreen}",
                                     style: TextStyle(
                                         fontSize: 16,
                                         color: textColor["textPrimaryColor"],
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.arrow_forward_ios_rounded,
-                                        color: color["deepPurpleColor"],
-                                      )),
+                                  (widget.initialScreen <
+                                          (widget.numberOfScreen - 1))
+                                      ? IconButton(
+                                          onPressed: widget.nextScreen,
+                                          icon: Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                            color: color["deepPurpleColor"],
+                                          ))
+                                      : IconButton(
+                                          onPressed: null,
+                                          icon: Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                            color: color["lightPurpleColor"],
+                                          ))
                                 ],
                               )
                             : Center(

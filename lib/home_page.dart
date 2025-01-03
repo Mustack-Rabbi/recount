@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'frame/frame_screen.dart';
-import 'screen/increment_decrement/inc_dec_screen_one.dart';
+import 'screen/increment_decrement/inc_dec_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -116,8 +114,11 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IncDecScreenOne(),
-
+              IncDecScreen(),
+              SizedBox(
+                height: 20,
+              ),
+              IncDecScreen(),
               // Section 2
               Text(
                 "Button",
