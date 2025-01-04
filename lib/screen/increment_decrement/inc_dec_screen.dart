@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recount/frame/frame_screen.dart';
 
+import '../../function/custom_function.dart';
 import 'inc_dec_screen_one.dart';
 import 'inc_dec_screen_two.dart';
 
@@ -30,8 +31,11 @@ class _IncDecScreenState extends State<IncDecScreen> {
   };
   int increment = 0;
   bool iconButtonAdd = true;
+  bool isVisible = false;
   // bool showDown = false;
   // bool widgetEdite = false;
+
+  bool showBadge = true;
 
   List<Widget> screenList = [
     IncDecScreenOne(),
@@ -56,6 +60,11 @@ class _IncDecScreenState extends State<IncDecScreen> {
     return Container(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         FrameScreen(
+          // widgetEditeOnPress: () {
+          //   setState(() {
+          //     CustomFunction.widgetEdite(false);
+          //   });
+          // },
           displayScreen: screenList[initialScreen],
           numberOfScreen: numberOfScreen,
           initialScreen: initialScreen,

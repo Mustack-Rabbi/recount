@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:recount/button/badge_button.dart';
+import 'package:recount/function/custom_function.dart';
 
 class FrameScreen extends StatefulWidget {
   final Widget displayScreen;
@@ -6,13 +8,18 @@ class FrameScreen extends StatefulWidget {
   final int initialScreen;
   final VoidCallback previousScreen;
   final VoidCallback nextScreen;
-  const FrameScreen(
-      {super.key,
-      required this.displayScreen,
-      required this.numberOfScreen,
-      required this.initialScreen,
-      required this.previousScreen,
-      required this.nextScreen});
+  // final VoidCallback widgetEditeOnPress;
+  // bool showBadge;
+  // // final bool showBadge;
+
+  FrameScreen({
+    super.key,
+    required this.displayScreen,
+    required this.numberOfScreen,
+    required this.initialScreen,
+    required this.previousScreen,
+    required this.nextScreen,
+  });
 
   @override
   State<FrameScreen> createState() => _FrameScreenState();
@@ -42,6 +49,9 @@ class _FrameScreenState extends State<FrameScreen> {
   bool iconButtonAdd = true;
   bool showDown = false;
   bool widgetEdite = false;
+
+  bool iiBadge = CustomFunction.iBadge;
+  // bool showBadge = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -197,25 +207,47 @@ class _FrameScreenState extends State<FrameScreen> {
                                     fontSize: 16,
                                     color: Colors.black.withOpacity(.6)),
                               ))),
-                    (widgetEdite == false)
-                        ? IconButton(
-                            onPressed: () {
-                              setState(() {
-                                widgetEdite = !widgetEdite;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.widgets,
-                              color: color["deepPurpleColor"],
-                            ))
-                        : IconButton(
-                            onPressed: () {
-                              setState(() {
-                                widgetEdite = !widgetEdite;
-                              });
-                            },
-                            icon: Icon(Icons.done,
-                                color: color["deepPurpleColor"])),
+
+                    // (widget.showBadge == false)
+                    //     ?
+
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            BadgeButton.showBadge = !BadgeButton.showBadge;
+                          });
+                        },
+                        icon: Icon(
+                          (BadgeButton.showBadge == false)
+                              ? Icons.widgets
+                              : Icons.done,
+                          color: color["deepPurpleColor"],
+                        )),
+
+                    // (widget.showBadge == false)
+                    //     ? IconButton(
+                    //         onPressed: () {
+                    //           setState(() {
+                    //             // widgetEdite = !widgetEdite;
+                    //             widget.showBadge = true;
+
+                    //             print(widget.showBadge);
+                    //           });
+                    //         },
+                    //         icon: Icon(
+                    //           Icons.widgets,
+                    //           color: color["deepPurpleColor"],
+                    //         ))
+                    //     : IconButton(
+                    //         onPressed: () {
+                    //           setState(() {
+                    //             widgetEdite = !widgetEdite;
+                    //             widget.showBadge = false;
+                    //             print(widget.showBadge);
+                    //           });
+                    //         },
+                    //         icon: Icon(Icons.done,
+                    //             color: color["deepPurpleColor"])),
                     IconButton(
                         onPressed: () {
                           setState(() {

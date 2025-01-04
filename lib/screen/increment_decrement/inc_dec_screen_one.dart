@@ -3,8 +3,10 @@ import 'package:badges/badges.dart' as badges;
 import 'package:recount/button/badge_button.dart';
 
 class IncDecScreenOne extends StatefulWidget {
+  // final bool showBadge;
   const IncDecScreenOne({
     super.key,
+    // required this.showBadge,
   });
 
   @override
@@ -28,6 +30,8 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
   };
   int increment = 0;
   bool iconButtonAdd = true;
+  bool isVisible = true;
+
   // bool showDown = false;
   // bool widgetEdite = false;
 
@@ -48,21 +52,23 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             BadgeButton(
-                isVisible: false,
-                customWidget: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        increment--;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.remove,
-                      color: color["deepPurpleColor"],
-                    )),
-                onTap: () {
-                  print("Badge Tapped");
-                },
-                showBadge: true),
+              isVisible: false,
+              customWidget: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      increment--;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.remove,
+                    color: color["deepPurpleColor"],
+                  )),
+              onTap: () {
+                setState(() {
+                  isVisible = !isVisible;
+                });
+              },
+            ),
             // badges.Badge(
             //   position: badges.BadgePosition.topEnd(top: -10, end: -12),
             //   showBadge: true,
@@ -93,18 +99,22 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
                 )),
             if (iconButtonAdd == true)
               BadgeButton(
-                  isVisible: true,
-                  customWidget: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          increment++;
+                isVisible: isVisible,
+                customWidget: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        increment++;
 
-                          print("numbr $increment");
-                        });
-                      },
-                      icon: Icon(Icons.add, color: color["deepPurpleColor"])),
-                  onTap: () {},
-                  showBadge: true),
+                        print("numbr $increment");
+                      });
+                    },
+                    icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+                onTap: () {
+                  setState(() {
+                    isVisible = !isVisible;
+                  });
+                },
+              ),
           ],
         )
       ]),
