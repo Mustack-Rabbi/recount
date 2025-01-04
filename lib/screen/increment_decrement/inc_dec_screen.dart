@@ -39,15 +39,6 @@ class _IncDecScreenState extends State<IncDecScreen> {
     Center(
       child: Text("03 screen"),
     ),
-    Center(
-      child: Text("04 screen"),
-    ),
-    Center(
-      child: Text("05 screen"),
-    ),
-    Center(
-      child: Text("06 screen"),
-    ),
   ];
   late int numberOfScreen;
   int initialScreen = 0;

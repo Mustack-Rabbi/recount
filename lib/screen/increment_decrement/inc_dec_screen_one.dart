@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
+import 'package:recount/button/badge_button.dart';
 
 class IncDecScreenOne extends StatefulWidget {
   const IncDecScreenOne({
@@ -45,16 +47,44 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    increment--;
-                  });
+            BadgeButton(
+                isVisible: false,
+                customWidget: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        increment--;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.remove,
+                      color: color["deepPurpleColor"],
+                    )),
+                onTap: () {
+                  print("Badge Tapped");
                 },
-                icon: Icon(
-                  Icons.remove,
-                  color: color["deepPurpleColor"],
-                )),
+                showBadge: true),
+            // badges.Badge(
+            //   position: badges.BadgePosition.topEnd(top: -10, end: -12),
+            //   showBadge: true,
+            //   onTap: () {
+            //     print("Badge Tapped");
+            //   },
+            //   badgeContent: Icon(
+            //     Icons.remove,
+            //     color: Colors.white,
+            //     size: 10,
+            //   ),
+            //   child: IconButton(
+            //       onPressed: () {
+            //         setState(() {
+            //           increment--;
+            //         });
+            //       },
+            //       icon: Icon(
+            //         Icons.remove,
+            //         color: color["deepPurpleColor"],
+            //       )),
+            // ),
             Text(increment.toString(),
                 style: TextStyle(
                   fontSize: 22,
@@ -62,15 +92,19 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
                   color: textColor["textPrimaryColor"],
                 )),
             if (iconButtonAdd == true)
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      increment++;
+              BadgeButton(
+                  isVisible: true,
+                  customWidget: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          increment++;
 
-                      print("numbr $increment");
-                    });
-                  },
-                  icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+                          print("numbr $increment");
+                        });
+                      },
+                      icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+                  onTap: () {},
+                  showBadge: true),
           ],
         )
       ]),
