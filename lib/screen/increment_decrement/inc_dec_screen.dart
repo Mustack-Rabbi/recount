@@ -31,7 +31,7 @@ class _IncDecScreenState extends State<IncDecScreen> {
   };
   int increment = 0;
   bool iconButtonAdd = true;
-  bool isVisible = false;
+  // bool isVisible = false;
   // bool showDown = false;
   // bool widgetEdite = false;
 
@@ -60,6 +60,8 @@ class _IncDecScreenState extends State<IncDecScreen> {
     return Container(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         FrameScreen(
+          widgetEditeFunction: () {},
+          // widgetEdite: false,
           // widgetEditeOnPress: () {
           //   setState(() {
           //     CustomFunction.widgetEdite(false);

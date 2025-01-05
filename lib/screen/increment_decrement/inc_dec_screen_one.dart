@@ -30,10 +30,23 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
   };
   int increment = 0;
   bool iconButtonAdd = true;
-  bool isVisible = true;
 
+  //eti poriborton korte hobe
+  bool _isVisible = false;
+
+  bool callBackF(bool isVisible) {
+    setState(() {
+      _isVisible = isVisible;
+    });
+
+    return _isVisible;
+  }
   // bool showDown = false;
   // bool widgetEdite = false;
+
+  callBack() {
+    print("inc_dec_screen_one - callBack");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +65,7 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             BadgeButton(
-              isVisible: false,
+              isVisible: _isVisible,
               customWidget: IconButton(
                   onPressed: () {
                     setState(() {
@@ -65,7 +78,7 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
                   )),
               onTap: () {
                 setState(() {
-                  isVisible = !isVisible;
+                  // isVisible = !isVisible;
                 });
               },
             ),
@@ -99,7 +112,7 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
                 )),
             if (iconButtonAdd == true)
               BadgeButton(
-                isVisible: isVisible,
+                isVisible: _isVisible,
                 customWidget: IconButton(
                     onPressed: () {
                       setState(() {
@@ -111,7 +124,7 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
                     icon: Icon(Icons.add, color: color["deepPurpleColor"])),
                 onTap: () {
                   setState(() {
-                    isVisible = !isVisible;
+                    // isVisible = !isVisible;
                   });
                 },
               ),

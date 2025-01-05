@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:recount/button/badge_button.dart';
 import 'package:recount/function/custom_function.dart';
+import 'package:recount/main.dart';
 
 class FrameScreen extends StatefulWidget {
   final Widget displayScreen;
@@ -8,7 +11,8 @@ class FrameScreen extends StatefulWidget {
   final int initialScreen;
   final VoidCallback previousScreen;
   final VoidCallback nextScreen;
-  // final VoidCallback widgetEditeOnPress;
+  // bool widgetEdite;
+  final Function? widgetEditeFunction;
   // bool showBadge;
   // // final bool showBadge;
 
@@ -19,6 +23,7 @@ class FrameScreen extends StatefulWidget {
     required this.initialScreen,
     required this.previousScreen,
     required this.nextScreen,
+    required this.widgetEditeFunction,
   });
 
   @override
@@ -48,12 +53,24 @@ class _FrameScreenState extends State<FrameScreen> {
   int increment = 0;
   bool iconButtonAdd = true;
   bool showDown = false;
+
+  // bool iiBadge = CustomFunction.iBadge;
+  // bool showBadge = false;
+
+  // BadgeButton obj = BadgeButton();
   bool widgetEdite = false;
 
-  bool iiBadge = CustomFunction.iBadge;
-  // bool showBadge = false;
   @override
   Widget build(BuildContext context) {
+    // obj.isVisible = widgetEdite;
+
+    bool widgetEditeFunction() {
+      setState(() {
+        widgetEdite = !widgetEdite;
+      });
+      return widgetEdite;
+    }
+
     return Container(
       decoration: BoxDecoration(color: color["vibrantPurpleColor"]),
       padding: EdgeInsets.all(8),
@@ -212,13 +229,19 @@ class _FrameScreenState extends State<FrameScreen> {
                     //     ?
 
                     IconButton(
+                        // onPressed: widget.widgetEditeFunction,
+
                         onPressed: () {
+                          showBadge.value = !showBadge.value;
+                          // widgetEdite = !widgetEdite;
+                          // widget.widgetEditeFunction!;
+
                           setState(() {
-                            BadgeButton.showBadge = !BadgeButton.showBadge;
+                            // BadgeButton.showBadge = !BadgeButton.showBadge;
                           });
                         },
                         icon: Icon(
-                          (BadgeButton.showBadge == false)
+                          (showBadge.value == false)
                               ? Icons.widgets
                               : Icons.done,
                           color: color["deepPurpleColor"],
