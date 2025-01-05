@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart' as badges;
+// import 'package:badges/badges.dart' as badges;
 import 'package:recount/button/badge_button.dart';
+import 'package:recount/main.dart';
 
 class IncDecScreenOne extends StatefulWidget {
   // final bool showBadge;
@@ -32,21 +33,50 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
   bool iconButtonAdd = true;
 
   //eti poriborton korte hobe
-  bool _isVisible = false;
+  bool isVisibleRemoveButton = true;
+  bool isVisibleAddButton = true;
 
-  bool callBackF(bool isVisible) {
-    setState(() {
-      _isVisible = isVisible;
-    });
+  bool isVisible(bool globalX, bool localX) {
+    bool showX;
 
-    return _isVisible;
+    if (globalX == true) {
+      showX = true;
+    } else {
+      showX = localX;
+    }
+
+    return showX;
   }
-  // bool showDown = false;
-  // bool widgetEdite = false;
 
-  callBack() {
-    print("inc_dec_screen_one - callBack");
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+
+    bool mustack = isVisible(showBadge.value, isVisibleAddButton);
+
+    isVisibleRemoveButton;
   }
+
+  late bool mustack;
+
+  // Widget displayButton(bool isVisibleAddButton, bool isVisibleRemoveButton,
+  //     Function onPressed, IconData icon) {
+  //   return BadgeButton(
+  //     isVisible: isVisibleAddButton,
+  //     customWidget: IconButton(
+  //         onPressed: onPressed;
+
+  //         icon: Icon(icon, color: color["deepPurpleColor"])
+  //         // icon: icon,
+  //         ),
+  //     onTap: () {
+  //       setState(() {
+  //         isVisibleAddButton = !isVisibleAddButton;
+  //       });
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +95,7 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             BadgeButton(
-              isVisible: _isVisible,
+              isVisible: isVisibleRemoveButton,
               customWidget: IconButton(
                   onPressed: () {
                     setState(() {
@@ -78,7 +108,7 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
                   )),
               onTap: () {
                 setState(() {
-                  // isVisible = !isVisible;
+                  isVisibleRemoveButton = !isVisibleRemoveButton;
                 });
               },
             ),
@@ -110,24 +140,34 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
                   fontWeight: FontWeight.w600,
                   color: textColor["textPrimaryColor"],
                 )),
-            if (iconButtonAdd == true)
-              BadgeButton(
-                isVisible: _isVisible,
-                customWidget: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        increment++;
 
-                        print("numbr $increment");
-                      });
-                    },
-                    icon: Icon(Icons.add, color: color["deepPurpleColor"])),
-                onTap: () {
-                  setState(() {
-                    // isVisible = !isVisible;
-                  });
-                },
-              ),
+            // displayButton(isVisibleAddButton, isVisibleRemoveButton, () {
+            //   setState(() {
+            //     increment++;
+            //   });
+            // }, Icons.add)
+
+            // if (isVisible(showBadge.value, isVisibleAddButton) == true)
+            // if (mustack == true)
+            BadgeButton(
+              isVisible: isVisibleAddButton,
+              customWidget: IconButton(
+                  onPressed: () {
+                    print(isVisibleRemoveButton);
+                    setState(() {
+                      increment++;
+
+                      print("numbr $increment");
+                    });
+                  },
+                  icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+              onTap: () {
+                setState(() {
+                  isVisibleAddButton = !isVisibleAddButton;
+                });
+                print(isVisibleAddButton);
+              },
+            )
           ],
         )
       ]),

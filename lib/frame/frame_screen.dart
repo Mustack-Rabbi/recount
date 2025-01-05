@@ -176,7 +176,7 @@ class _FrameScreenState extends State<FrameScreen> {
                         icon: Icon(Icons.more_vert,
                             color: color["deepPurpleColor"])),
                     Expanded(
-                        child: (widgetEdite == false)
+                        child: (showBadge.value == false)
                             ? Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,

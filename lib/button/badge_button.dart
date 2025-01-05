@@ -3,10 +3,14 @@ import 'package:badges/badges.dart' as badges;
 import 'package:recount/main.dart';
 
 class BadgeButton extends StatefulWidget {
-  final Widget? customWidget;
-  final VoidCallback? onTap;
-  final bool? isVisible;
-  BadgeButton({super.key, this.customWidget, this.onTap, this.isVisible});
+  final Widget customWidget;
+  final VoidCallback onTap;
+  final bool isVisible;
+  BadgeButton(
+      {super.key,
+      required this.customWidget,
+      required this.onTap,
+      required this.isVisible});
 
   @override
   State<BadgeButton> createState() => _BadgeButtonState();
