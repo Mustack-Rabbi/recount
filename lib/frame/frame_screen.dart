@@ -11,11 +11,11 @@ class FrameScreen extends StatefulWidget {
   final Widget displayScreen;
   final int numberOfScreen;
   final int initialScreen;
-  final VoidCallback previousScreen;
-  final VoidCallback nextScreen;
+  final VoidCallback previousScreenVCB;
+  final VoidCallback nextScreenVCB;
+  final VoidCallback widgetsVCB;
   // bool widgetEdite;
-  final Function? widgetEditeFunction;
-  final Function? setScreenUp;
+
   // bool showBadge;
   // // final bool showBadge;
 
@@ -24,10 +24,9 @@ class FrameScreen extends StatefulWidget {
     required this.displayScreen,
     required this.numberOfScreen,
     required this.initialScreen,
-    required this.previousScreen,
-    required this.nextScreen,
-    required this.widgetEditeFunction,
-    this.setScreenUp,
+    required this.previousScreenVCB,
+    required this.nextScreenVCB,
+    required this.widgetsVCB,
   });
 
   @override
@@ -62,18 +61,18 @@ class _FrameScreenState extends State<FrameScreen> {
   // bool showBadge = false;
 
   // BadgeButton obj = BadgeButton();
-  bool widgetEdite = false;
+  // bool widgetEdite = false;
 
   @override
   Widget build(BuildContext context) {
     // obj.isVisible = widgetEdite;
 
-    bool widgetEditeFunction() {
-      setState(() {
-        widgetEdite = !widgetEdite;
-      });
-      return widgetEdite;
-    }
+    // bool widgetEditeFunction() {
+    //   setState(() {
+    //     widgetEdite = !widgetEdite;
+    //   });
+    //   return widgetEdite;
+    // }
 
     return Container(
       decoration: BoxDecoration(color: color["vibrantPurpleColor"]),
@@ -91,41 +90,6 @@ class _FrameScreenState extends State<FrameScreen> {
                     style: TextStyle(
                         color: color["lightPurpleColor"],
                         fontWeight: FontWeight.bold)),
-
-                //     onPressed: () {
-                //       showAdaptiveDialog(
-                //           context: context,
-                //           builder: (context) {
-                //             return AlertDialog(
-                //               title: Text("Settings"),
-                //               actions: [
-                //                 Row(
-                //                   children: [
-                //                     Icon(Icons.remove),
-                //                     Text("Add Icon"),
-                //                     IconButton(
-                //                         onPressed: () {
-                //                           setState(() {
-                //                             iconButtonAdd =
-                //                                 !iconButtonAdd;
-                //                           });
-                //                         },
-                //                         icon: Icon(Icons.done))
-                //                   ],
-                //                 ),
-                //                 Icon(Icons.add),
-                //                 Icon(Icons.add),
-                //                 Icon(Icons.add),
-                //                 TextButton(
-                //                     onPressed: () {
-                //                       Navigator.pop(context);
-                //                     },
-                //                     child: Text("Close")),
-                //               ],
-                //             );
-                //           });
-                //     },
-                //     icon: Icon(Icons.more_vert))
               ],
             ),
           ),
@@ -187,7 +151,7 @@ class _FrameScreenState extends State<FrameScreen> {
                                 children: [
                                   (widget.initialScreen > 0)
                                       ? IconButton(
-                                          onPressed: widget.previousScreen,
+                                          onPressed: widget.previousScreenVCB,
                                           icon: Icon(
                                               Icons.arrow_back_ios_rounded,
                                               color: color["deepPurpleColor"]))
@@ -207,7 +171,7 @@ class _FrameScreenState extends State<FrameScreen> {
                                   (widget.initialScreen <
                                           (widget.numberOfScreen - 1))
                                       ? IconButton(
-                                          onPressed: widget.nextScreen,
+                                          onPressed: widget.nextScreenVCB,
                                           icon: Icon(
                                             Icons.arrow_forward_ios_rounded,
                                             color: color["deepPurpleColor"],
@@ -235,17 +199,18 @@ class _FrameScreenState extends State<FrameScreen> {
                     IconButton(
                         // onPressed: widget.widgetEditeFunction,
 
-                        onPressed: () {
-                          // widgetEdite = !widgetEdite;
-                          // widget.widgetEditeFunction!;
+                        // onPressed: () {
+                        //   // widgetEdite = !widgetEdite;
+                        //   // widget.widgetEditeFunction!;
 
-                          setState(() {
-                            widget.setScreenUp;
-                            showBadge.value = !showBadge.value;
+                        //   setState(() {
+                        //     widget.setScreenUp;
+                        //     showBadge.value = !showBadge.value;
 
-                            // BadgeButton.showBadge = !BadgeButton.showBadge;
-                          });
-                        },
+                        //     // BadgeButton.showBadge = !BadgeButton.showBadge;
+                        //   });
+                        // },
+                        onPressed: widget.widgetsVCB,
                         icon: Icon(
                           (showBadge.value == false)
                               ? Icons.widgets
@@ -253,30 +218,6 @@ class _FrameScreenState extends State<FrameScreen> {
                           color: color["deepPurpleColor"],
                         )),
 
-                    // (widget.showBadge == false)
-                    //     ? IconButton(
-                    //         onPressed: () {
-                    //           setState(() {
-                    //             // widgetEdite = !widgetEdite;
-                    //             widget.showBadge = true;
-
-                    //             print(widget.showBadge);
-                    //           });
-                    //         },
-                    //         icon: Icon(
-                    //           Icons.widgets,
-                    //           color: color["deepPurpleColor"],
-                    //         ))
-                    //     : IconButton(
-                    //         onPressed: () {
-                    //           setState(() {
-                    //             widgetEdite = !widgetEdite;
-                    //             widget.showBadge = false;
-                    //             print(widget.showBadge);
-                    //           });
-                    //         },
-                    //         icon: Icon(Icons.done,
-                    //             color: color["deepPurpleColor"])),
                     IconButton(
                         onPressed: () {
                           setState(() {

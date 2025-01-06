@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recount/frame/frame_screen.dart';
 
 import '../../function/custom_function.dart';
+import '../../main.dart';
 import 'inc_dec_screen_one.dart';
 import 'inc_dec_screen_two.dart';
 
@@ -35,8 +36,6 @@ class _IncDecScreenState extends State<IncDecScreen> {
   // bool showDown = false;
   // bool widgetEdite = false;
 
-  bool showBadge = true;
-
   List<Widget> screenList = [
     IncDecScreenOne(),
     IncDecScreenTwo(),
@@ -54,14 +53,37 @@ class _IncDecScreenState extends State<IncDecScreen> {
     super.initState();
   }
 
+  // void setScreenUp() {
+  //            showBadge.value = !showBadge.value;
+  //   setState(() {
+  //     initialScreen++;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     // numberOfScreen = numberOfScreen;
     return Container(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         FrameScreen(
+          widgetsVCB: () {
+            //  widgetEdite = !widgetEdite;
+            //             widget.widgetEditeFunction!;
+
+            setState(() {
+              // IncDecScreenOne().createState();
+
+              // widget.setScreenUp;
+              showBadge.value = !showBadge.value;
+
+              // BadgeButton.showBadge = !BadgeButton.showBadge;
+            });
+
+            setState(() {});
+          },
+
           // setScreenUp: objj.,
-          widgetEditeFunction: () {},
+
           // widgetEdite: false,
           // widgetEditeOnPress: () {
           //   setState(() {
@@ -71,7 +93,7 @@ class _IncDecScreenState extends State<IncDecScreen> {
           displayScreen: screenList[initialScreen],
           numberOfScreen: numberOfScreen,
           initialScreen: initialScreen,
-          nextScreen: () {
+          nextScreenVCB: () {
             setState(() {
               if (initialScreen < (numberOfScreen - 1)) {
                 initialScreen++;
@@ -80,7 +102,7 @@ class _IncDecScreenState extends State<IncDecScreen> {
               print("numbr $initialScreen");
             });
           },
-          previousScreen: () {
+          previousScreenVCB: () {
             setState(() {
               if (initialScreen > 0) {
                 initialScreen--;

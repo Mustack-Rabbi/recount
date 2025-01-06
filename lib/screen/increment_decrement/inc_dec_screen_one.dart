@@ -16,6 +16,18 @@ class IncDecScreenOne extends StatefulWidget {
 }
 
 class _IncDecScreenOneState extends State<IncDecScreenOne> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   Map<String, Color> textColor = {
     "textPrimaryColor": Color(0xFF212121),
     "textSecondaryColor": Color(0xFF757575),
@@ -37,6 +49,13 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
   bool isVisibleRemoveButton = true;
   bool isVisibleAddButton = true;
 
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+    mustack;
+  }
+
   bool isVisible(bool globalX, bool localX) {
     bool showX;
 
@@ -49,59 +68,11 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
     return showX;
   }
 
-  // @override
-  // void setState(VoidCallback fn) {
-  //   // TODO: implement setState
-  //   super.setState(fn);
-
-  //   bool mustack = isVisible(showBadge.value, isVisibleAddButton);
-
-  //   isVisibleRemoveButton;
-  // }
-
   late bool mustack;
-
-  // Widget displayButton(bool isVisibleAddButton, bool isVisibleRemoveButton,
-  //     Function onPressed, IconData icon) {
-  //   return BadgeButton(
-  //     isVisible: isVisibleAddButton,
-  //     customWidget: IconButton(
-  //         onPressed: onPressed;
-
-  //         icon: Icon(icon, color: color["deepPurpleColor"])
-  //         // icon: icon,
-  //         ),
-  //     onTap: () {
-  //       setState(() {
-  //         isVisibleAddButton = !isVisibleAddButton;
-  //       });
-  //     },
-  //   );
-  // }
-
-  void mmr() {
-    setState(() {});
-  }
-
-  @override
-  void setState(VoidCallback fn) {
-    // TODO: implement setState
-    super.setState(fn);
-  }
 
   @override
   Widget build(BuildContext context) {
-    // widget.screenUpdate;
     return Container(
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.circular(10),
-      //   color: Colors.white.withOpacity(.9),
-      // ),
-      // // height: 200,
-      // padding: EdgeInsets.symmetric(
-      //   horizontal: 8,
-      // ),
-      // width: double.infinity,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -160,9 +131,11 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
             // }, Icons.add)
 
             // if (isVisible(showBadge.value, isVisibleAddButton) == true)
-            if (showBadge.value || isVisibleAddButton)
-              // if (mustack == true)
-              BadgeButton(
+            // if (showBadge.value || isVisibleAddButton)
+            // if (mustack == true)
+            Visibility(
+              visible: showBadge.value || isVisibleAddButton,
+              child: BadgeButton(
                 isVisible: isVisibleAddButton,
                 customWidget: IconButton(
                     onPressed: () {
@@ -180,7 +153,8 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
                   });
                   print(isVisibleAddButton);
                 },
-              )
+              ),
+            )
           ],
         )
       ]),
