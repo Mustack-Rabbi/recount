@@ -6,6 +6,7 @@ void main() {
 }
 
 ValueNotifier<bool> showBadge = ValueNotifier<bool>(false);
+// ValueNotifier<Function> screenUpdate = ValueNotifier((){});
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

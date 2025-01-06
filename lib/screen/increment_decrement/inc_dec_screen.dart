@@ -60,6 +60,7 @@ class _IncDecScreenState extends State<IncDecScreen> {
     return Container(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         FrameScreen(
+          // setScreenUp: objj.,
           widgetEditeFunction: () {},
           // widgetEdite: false,
           // widgetEditeOnPress: () {

@@ -7,6 +7,7 @@ class IncDecScreenOne extends StatefulWidget {
   // final bool showBadge;
   const IncDecScreenOne({
     super.key,
+
     // required this.showBadge,
   });
 
@@ -48,15 +49,15 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
     return showX;
   }
 
-  @override
-  void setState(VoidCallback fn) {
-    // TODO: implement setState
-    super.setState(fn);
+  // @override
+  // void setState(VoidCallback fn) {
+  //   // TODO: implement setState
+  //   super.setState(fn);
 
-    bool mustack = isVisible(showBadge.value, isVisibleAddButton);
+  //   bool mustack = isVisible(showBadge.value, isVisibleAddButton);
 
-    isVisibleRemoveButton;
-  }
+  //   isVisibleRemoveButton;
+  // }
 
   late bool mustack;
 
@@ -78,8 +79,19 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
   //   );
   // }
 
+  void mmr() {
+    setState(() {});
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    // TODO: implement setState
+    super.setState(fn);
+  }
+
   @override
   Widget build(BuildContext context) {
+    // widget.screenUpdate;
     return Container(
       // decoration: BoxDecoration(
       //   borderRadius: BorderRadius.circular(10),
@@ -148,26 +160,27 @@ class _IncDecScreenOneState extends State<IncDecScreenOne> {
             // }, Icons.add)
 
             // if (isVisible(showBadge.value, isVisibleAddButton) == true)
-            // if (mustack == true)
-            BadgeButton(
-              isVisible: isVisibleAddButton,
-              customWidget: IconButton(
-                  onPressed: () {
-                    print(isVisibleRemoveButton);
-                    setState(() {
-                      increment++;
+            if (showBadge.value || isVisibleAddButton)
+              // if (mustack == true)
+              BadgeButton(
+                isVisible: isVisibleAddButton,
+                customWidget: IconButton(
+                    onPressed: () {
+                      print(isVisibleRemoveButton);
+                      setState(() {
+                        increment++;
 
-                      print("numbr $increment");
-                    });
-                  },
-                  icon: Icon(Icons.add, color: color["deepPurpleColor"])),
-              onTap: () {
-                setState(() {
-                  isVisibleAddButton = !isVisibleAddButton;
-                });
-                print(isVisibleAddButton);
-              },
-            )
+                        print("numbr $increment");
+                      });
+                    },
+                    icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+                onTap: () {
+                  setState(() {
+                    isVisibleAddButton = !isVisibleAddButton;
+                  });
+                  print(isVisibleAddButton);
+                },
+              )
           ],
         )
       ]),

@@ -5,6 +5,8 @@ import 'package:recount/button/badge_button.dart';
 import 'package:recount/function/custom_function.dart';
 import 'package:recount/main.dart';
 
+import '../screen/increment_decrement/inc_dec_screen_one.dart';
+
 class FrameScreen extends StatefulWidget {
   final Widget displayScreen;
   final int numberOfScreen;
@@ -13,6 +15,7 @@ class FrameScreen extends StatefulWidget {
   final VoidCallback nextScreen;
   // bool widgetEdite;
   final Function? widgetEditeFunction;
+  final Function? setScreenUp;
   // bool showBadge;
   // // final bool showBadge;
 
@@ -24,6 +27,7 @@ class FrameScreen extends StatefulWidget {
     required this.previousScreen,
     required this.nextScreen,
     required this.widgetEditeFunction,
+    this.setScreenUp,
   });
 
   @override
@@ -232,11 +236,13 @@ class _FrameScreenState extends State<FrameScreen> {
                         // onPressed: widget.widgetEditeFunction,
 
                         onPressed: () {
-                          showBadge.value = !showBadge.value;
                           // widgetEdite = !widgetEdite;
                           // widget.widgetEditeFunction!;
 
                           setState(() {
+                            widget.setScreenUp;
+                            showBadge.value = !showBadge.value;
+
                             // BadgeButton.showBadge = !BadgeButton.showBadge;
                           });
                         },
