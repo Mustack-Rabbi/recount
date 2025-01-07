@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:get/get.dart';
+import 'package:recount/controller/screen_controller.dart';
 import 'package:recount/main.dart';
 
 class BadgeButton extends StatefulWidget {
@@ -29,32 +31,35 @@ class _BadgeButtonState extends State<BadgeButton> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenController screenController = Get.put(ScreenController());
     return ValueListenableBuilder<bool>(
       valueListenable: showBadge,
       builder: (context, value, child) {
-        return badges.Badge(
-          showBadge: showBadge.value,
-          position: badges.BadgePosition.topEnd(top: -10, end: -12),
-          badgeAnimation: badges.BadgeAnimation.fade(toAnimate: false),
-          onTap: widget.onTap,
-          badgeContent: Icon(
-            (widget.isVisible == true) ? Icons.remove : Icons.add,
-            color: Colors.white,
-            size: 10,
-          ),
-          child: widget.customWidget,
+        return Obx(() {
+          return badges.Badge(
+            showBadge: screenController.showBadge.value,
+            position: badges.BadgePosition.topEnd(top: -10, end: -12),
+            badgeAnimation: badges.BadgeAnimation.fade(toAnimate: false),
+            onTap: widget.onTap,
+            badgeContent: Icon(
+              (widget.isVisible == true) ? Icons.remove : Icons.add,
+              color: Colors.white,
+              size: 10,
+            ),
+            child: widget.customWidget,
 
-          //  IconButton(
-          //     onPressed: () {
-          //       setState(() {
-          //         increment--;
-          //       });
-          //     },
-          //     icon: Icon(
-          //       Icons.remove,
-          //       color: color["deepPurpleColor"],
-          //     )),
-        );
+            //  IconButton(
+            //     onPressed: () {
+            //       setState(() {
+            //         increment--;
+            //       });
+            //     },
+            //     icon: Icon(
+            //       Icons.remove,
+            //       color: color["deepPurpleColor"],
+            //     )),
+          );
+        });
       },
     );
   }
