@@ -49,21 +49,25 @@ class IncDecScreenOne extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            BadgeButton(
-              isVisible: isVisibleRemoveButton,
-              customWidget: IconButton(
-                  onPressed: () {
-                    screenController.decrement();
-                  },
-                  icon: Icon(
-                    Icons.remove,
-                    color: color["deepPurpleColor"],
-                  )),
-              onTap: () {
-                // setState(() {
-                //   isVisibleRemoveButton = !isVisibleRemoveButton;
-                // });
-              },
+            Obx(
+              () => BadgeButton(
+                badgeIcon: screenController.isVisibleRemoveButton.value,
+                isVisible: screenController.isVisibleRemoveButton.value,
+                customWidget: IconButton(
+                    onPressed: () {
+                      screenController.decrement();
+                    },
+                    icon: Icon(
+                      Icons.remove,
+                      color: color["deepPurpleColor"],
+                    )),
+                onTap: () {
+                  screenController.isVisibleRemoveButtonFunction();
+                  // setState(() {
+                  //   isVisibleRemoveButton = !isVisibleRemoveButton;
+                  // });
+                },
+              ),
             ),
             Obx(() {
               return Text(
@@ -74,28 +78,27 @@ class IncDecScreenOne extends StatelessWidget {
                     color: textColor["textPrimaryColor"],
                   ));
             }),
-            Visibility(
-              visible: true,
-              child: BadgeButton(
-                isVisible: false,
-                customWidget: IconButton(
-                    onPressed: () {
-                      screenController.increment();
-                      // print(isVisibleRemoveButton);
-                      // setState(() {
-                      //   screenController.increment();
+            Obx(
+              () => Visibility(
+                visible: screenController.isVisibleAddButton.value,
+                child: BadgeButton(
+                  badgeIcon: screenController.isVisibleAddButton.value,
+                  isVisible: screenController.isVisibleAddButton.value,
+                  customWidget: IconButton(
+                      onPressed: () {
+                        screenController.increment();
+                      },
+                      icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+                  onTap: () {
+                    screenController.isVisibleAddButtonFunction();
 
-                      //   print(
-                      //       "numbr $screenController.incDecScreenOneIncrement");
-                      // });
-                    },
-                    icon: Icon(Icons.add, color: color["deepPurpleColor"])),
-                onTap: () {
-                  // setState(() {
-                  //   isVisibleAddButton = !isVisibleAddButton;
-                  // });
-                  // print(isVisibleAddButton);
-                },
+                    print(screenController.isVisibleAddButton.value);
+                    // setState(() {
+                    //   isVisibleAddButton = !isVisibleAddButton;
+                    // });
+                    // print(isVisibleAddButton);
+                  },
+                ),
               ),
             )
           ],
