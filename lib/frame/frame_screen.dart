@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:recount/button/badge_button.dart';
+import 'package:recount/controller/screen_controller.dart';
 import 'package:recount/function/custom_function.dart';
 import 'package:recount/main.dart';
 
@@ -73,6 +75,8 @@ class _FrameScreenState extends State<FrameScreen> {
     //   });
     //   return widgetEdite;
     // }
+
+    ScreenController screenController = Get.put(ScreenController());
 
     return Container(
       decoration: BoxDecoration(color: color["vibrantPurpleColor"]),
@@ -210,12 +214,16 @@ class _FrameScreenState extends State<FrameScreen> {
                         //     // BadgeButton.showBadge = !BadgeButton.showBadge;
                         //   });
                         // },
-                        onPressed: widget.widgetsVCB,
-                        icon: Icon(
-                          (showBadge.value == false)
-                              ? Icons.widgets
-                              : Icons.done,
-                          color: color["deepPurpleColor"],
+                        onPressed: () {
+                          screenController.showBadgefunction();
+                        },
+                        icon: Obx(
+                          () => Icon(
+                            (screenController.showBadge.value == false)
+                                ? Icons.widgets
+                                : Icons.done,
+                            color: color["deepPurpleColor"],
+                          ),
                         )),
 
                     IconButton(
