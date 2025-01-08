@@ -11,18 +11,18 @@ class IncDecScreenTwo extends StatefulWidget {
 
 class _IncDecScreenTwoState extends State<IncDecScreenTwo> {
   Map<String, Color> textColor = {
-    "textPrimaryColor": Color(0xFF212121),
-    "textSecondaryColor": Color(0xFF757575),
-    "textHighlightColor": Color(0xFF0086AD),
-    "textErrorColor": Color(0xFFB00020),
-    "textSuccessColor": Color(0xFF4CAF50),
-    "textDisabledColor": Color(0xFF9E9E9E),
+    "textPrimaryColor": const Color(0xFF212121),
+    "textSecondaryColor": const Color(0xFF757575),
+    "textHighlightColor": const Color(0xFF0086AD),
+    "textErrorColor": const Color(0xFFB00020),
+    "textSuccessColor": const Color(0xFF4CAF50),
+    "textDisabledColor": const Color(0xFF9E9E9E),
   };
   Map<String, Color> color = {
-    "lightPurpleColor": Color(0xFFF2CEFF),
-    "softPurpleColor": Color(0xFFE295FE),
-    "vibrantPurpleColor": Color(0xFFCB40FC),
-    "deepPurpleColor": Color(0xFFBB15F6),
+    "lightPurpleColor": const Color(0xFFF2CEFF),
+    "softPurpleColor": const Color(0xFFE295FE),
+    "vibrantPurpleColor": const Color(0xFFCB40FC),
+    "deepPurpleColor": const Color(0xFFBB15F6),
   };
   int increment = 0;
   bool iconButtonAdd = true;
@@ -44,89 +44,77 @@ class _IncDecScreenTwoState extends State<IncDecScreenTwo> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.circular(10),
-      //   color: Colors.white.withOpacity(.9),
-      // ),
-      // // height: 200,
-      // padding: EdgeInsets.symmetric(
-      //   horizontal: 8,
-      // ),
-      // width: double.infinity,
-      child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
-          children: [
-            Expanded(
-              child: Center(
+        children: [
+          Expanded(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(increment.toString(),
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: textColor["textPrimaryColor"],
+                      )),
+                  Text(
+                    "${numberToWord[increment]}",
+                  ),
+                ],
+              ),
+            ),
+          ),
+          // SizedBox(
+          //   height: 20,
+          // ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      increment = 0;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.refresh,
+                    color: color["deepPurpleColor"],
+                  )),
+
+              Expanded(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(increment.toString(),
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w600,
-                          color: textColor["textPrimaryColor"],
-                        )),
-                    Text(
-                      "${numberToWord[increment]}",
+                    const SizedBox(
+                      height: 30,
                     ),
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            increment--;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.remove,
+                          color: color["deepPurpleColor"],
+                        )),
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            increment++;
+
+                            // print("numbr $increment");
+                          });
+                        },
+                        icon: Icon(Icons.add, color: color["deepPurpleColor"])),
                   ],
                 ),
               ),
-            ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        increment = 0;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.refresh,
-                      color: color["deepPurpleColor"],
-                    )),
-
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 30,
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            setState(() {
-                              increment--;
-                            });
-                          },
-                          icon: Icon(
-                            Icons.remove,
-                            color: color["deepPurpleColor"],
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            setState(() {
-                              increment++;
-
-                              print("numbr $increment");
-                            });
-                          },
-                          icon:
-                              Icon(Icons.add, color: color["deepPurpleColor"])),
-                    ],
-                  ),
-                ),
-                // if (iconButtonAdd == true)
-              ],
-            )
-          ]),
-    );
+              // if (iconButtonAdd == true)
+            ],
+          )
+        ]);
   }
 }

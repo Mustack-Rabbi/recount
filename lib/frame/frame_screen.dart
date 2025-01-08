@@ -1,13 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:recount/button/badge_button.dart';
 import 'package:recount/controller/screen_controller.dart';
-import 'package:recount/function/custom_function.dart';
 import 'package:recount/main.dart';
-
-import '../screen/increment_decrement/inc_dec_screen_one.dart';
 
 class FrameScreen extends StatefulWidget {
   final Widget displayScreen;
@@ -21,7 +15,7 @@ class FrameScreen extends StatefulWidget {
   // bool showBadge;
   // // final bool showBadge;
 
-  FrameScreen({
+  const FrameScreen({
     super.key,
     required this.displayScreen,
     required this.numberOfScreen,
@@ -40,19 +34,19 @@ class _FrameScreenState extends State<FrameScreen> {
 
 // List <Color> textColor = [Color(0xFF212121), Color(0xFF757575), Color(0xFFB00020), Color(0xFF4CAF50),];
   Map<String, Color> textColor = {
-    "textPrimaryColor": Color(0xFF212121),
-    "textSecondaryColor": Color(0xFF757575),
-    "textHighlightColor": Color(0xFF0086AD),
-    "textErrorColor": Color(0xFFB00020),
-    "textSuccessColor": Color(0xFF4CAF50),
-    "textDisabledColor": Color(0xFF9E9E9E),
+    "textPrimaryColor": const Color(0xFF212121),
+    "textSecondaryColor": const Color(0xFF757575),
+    "textHighlightColor": const Color(0xFF0086AD),
+    "textErrorColor": const Color(0xFFB00020),
+    "textSuccessColor": const Color(0xFF4CAF50),
+    "textDisabledColor": const Color(0xFF9E9E9E),
   };
 
   Map<String, Color> color = {
-    "lightPurpleColor": Color(0xFFF2CEFF),
-    "softPurpleColor": Color(0xFFE295FE),
-    "vibrantPurpleColor": Color(0xFFCB40FC),
-    "deepPurpleColor": Color(0xFFBB15F6),
+    "lightPurpleColor": const Color(0xFFF2CEFF),
+    "softPurpleColor": const Color(0xFFE295FE),
+    "vibrantPurpleColor": const Color(0xFFCB40FC),
+    "deepPurpleColor": const Color(0xFFBB15F6),
   };
 
   int increment = 0;
@@ -80,10 +74,10 @@ class _FrameScreenState extends State<FrameScreen> {
 
     return Container(
       decoration: BoxDecoration(color: color["vibrantPurpleColor"]),
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             // color: Colors.red.withOpacity(.6),
             height: 40,
             width: double.infinity,
@@ -104,7 +98,7 @@ class _FrameScreenState extends State<FrameScreen> {
                   color: Colors.white.withOpacity(.9),
                 ),
                 height: 200,
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 8,
                 ),
                 width: double.infinity,
@@ -137,7 +131,7 @@ class _FrameScreenState extends State<FrameScreen> {
                 borderRadius: BorderRadius.circular(10),
                 color: color["lightPurpleColor"],
               ),
-              margin: EdgeInsets.symmetric(vertical: 5),
+              margin: const EdgeInsets.symmetric(vertical: 5),
               height: 40,
               width: double.infinity,
               child: Center(
@@ -147,55 +141,58 @@ class _FrameScreenState extends State<FrameScreen> {
                         onPressed: () {},
                         icon: Icon(Icons.more_vert,
                             color: color["deepPurpleColor"])),
-                    Expanded(
-                        child: (showBadge.value == false)
-                            ? Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  (widget.initialScreen > 0)
-                                      ? IconButton(
-                                          onPressed: widget.previousScreenVCB,
-                                          icon: Icon(
+                    Obx(
+                      () => Expanded(
+                          child: (screenController.showBadge.value == false)
+                              ? Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    (widget.initialScreen > 0)
+                                        ? IconButton(
+                                            onPressed: widget.previousScreenVCB,
+                                            icon: Icon(
+                                                Icons.arrow_back_ios_rounded,
+                                                color:
+                                                    color["deepPurpleColor"]))
+                                        : IconButton(
+                                            onPressed: null,
+                                            icon: Icon(
                                               Icons.arrow_back_ios_rounded,
-                                              color: color["deepPurpleColor"]))
-                                      : IconButton(
-                                          onPressed: null,
-                                          icon: Icon(
-                                            Icons.arrow_back_ios_rounded,
-                                            color: color["lightPurpleColor"],
-                                          )),
-                                  Text(
-                                    "${widget.initialScreen + 1}/${widget.numberOfScreen}",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: textColor["textPrimaryColor"],
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  (widget.initialScreen <
-                                          (widget.numberOfScreen - 1))
-                                      ? IconButton(
-                                          onPressed: widget.nextScreenVCB,
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios_rounded,
-                                            color: color["deepPurpleColor"],
-                                          ))
-                                      : IconButton(
-                                          onPressed: null,
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios_rounded,
-                                            color: color["lightPurpleColor"],
-                                          ))
-                                ],
-                              )
-                            : Center(
-                                child: Text(
-                                "Edite Widget",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.black.withOpacity(.6)),
-                              ))),
+                                              color: color["lightPurpleColor"],
+                                            )),
+                                    Text(
+                                      "${widget.initialScreen + 1}/${widget.numberOfScreen}",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: textColor["textPrimaryColor"],
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    (widget.initialScreen <
+                                            (widget.numberOfScreen - 1))
+                                        ? IconButton(
+                                            onPressed: widget.nextScreenVCB,
+                                            icon: Icon(
+                                              Icons.arrow_forward_ios_rounded,
+                                              color: color["deepPurpleColor"],
+                                            ))
+                                        : IconButton(
+                                            onPressed: null,
+                                            icon: Icon(
+                                              Icons.arrow_forward_ios_rounded,
+                                              color: color["lightPurpleColor"],
+                                            ))
+                                  ],
+                                )
+                              : Center(
+                                  child: Text(
+                                  "Edite Widget",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      color: Colors.black.withOpacity(.6)),
+                                ))),
+                    ),
 
                     // (widget.showBadge == false)
                     //     ?

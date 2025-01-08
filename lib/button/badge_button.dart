@@ -10,7 +10,7 @@ class BadgeButton extends StatelessWidget {
   final bool isVisible;
   final bool isVisibleWidget;
   // final bool badgeIcon;
-  BadgeButton(
+  const BadgeButton(
       {super.key,
       required this.customWidget,
       required this.onTap,
@@ -21,27 +21,22 @@ class BadgeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenController screenController = Get.put(ScreenController());
-    return ValueListenableBuilder<bool>(
-      valueListenable: showBadge,
-      builder: (context, value, child) {
-        return Obx(() {
-          return Visibility(
-            visible: isVisibleWidget,
-            child: badges.Badge(
-              showBadge: screenController.showBadge.value,
-              position: badges.BadgePosition.topEnd(top: -10, end: -12),
-              badgeAnimation: badges.BadgeAnimation.fade(toAnimate: false),
-              onTap: onTap,
-              badgeContent: Icon(
-                (isVisible) ? Icons.remove : Icons.add,
-                color: Colors.white,
-                size: 10,
-              ),
-              child: customWidget,
-            ),
-          );
-        });
-      },
-    );
+    return Obx(() {
+      return Visibility(
+        visible: isVisibleWidget,
+        child: badges.Badge(
+          showBadge: screenController.showBadge.value,
+          position: badges.BadgePosition.topEnd(top: -10, end: -12),
+          badgeAnimation: const badges.BadgeAnimation.fade(toAnimate: false),
+          onTap: onTap,
+          badgeContent: Icon(
+            (isVisible) ? Icons.remove : Icons.add,
+            color: Colors.white,
+            size: 10,
+          ),
+          child: customWidget,
+        ),
+      );
+    });
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recount/screen/increment_decrement/inc_dec_screen_one.dart';
 import 'screen/increment_decrement/inc_dec_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,29 +9,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Color mintGreen = Color(0xFF97dbaf);
+  Color mintGreen = const Color(0xFF97dbaf);
   Color appColor = Colors.teal;
-  Color lightLime = Color(0xFFc2e6ae);
-  Color pastelYellow = Color(0xFFf3e1a7);
-  Color blushPink = Color(0xFFf4bbba);
+  Color lightLime = const Color(0xFFc2e6ae);
+  Color pastelYellow = const Color(0xFFf3e1a7);
+  Color blushPink = const Color(0xFFf4bbba);
 
   // Color
 
 // List <Color> textColor = [Color(0xFF212121), Color(0xFF757575), Color(0xFFB00020), Color(0xFF4CAF50),];
   Map<String, Color> textColor = {
-    "textPrimaryColor": Color(0xFF212121),
-    "textSecondaryColor": Color(0xFF757575),
-    "textHighlightColor": Color(0xFF0086AD),
-    "textErrorColor": Color(0xFFB00020),
-    "textSuccessColor": Color(0xFF4CAF50),
-    "textDisabledColor": Color(0xFF9E9E9E),
+    "textPrimaryColor": const Color(0xFF212121),
+    "textSecondaryColor": const Color(0xFF757575),
+    "textHighlightColor": const Color(0xFF0086AD),
+    "textErrorColor": const Color(0xFFB00020),
+    "textSuccessColor": const Color(0xFF4CAF50),
+    "textDisabledColor": const Color(0xFF9E9E9E),
   };
 
   Map<String, Color> color = {
-    "lightPurpleColor": Color(0xFFF2CEFF),
-    "softPurpleColor": Color(0xFFE295FE),
-    "vibrantPurpleColor": Color(0xFFCB40FC),
-    "deepPurpleColor": Color(0xFFBB15F6),
+    "lightPurpleColor": const Color(0xFFF2CEFF),
+    "softPurpleColor": const Color(0xFFE295FE),
+    "vibrantPurpleColor": const Color(0xFFCB40FC),
+    "deepPurpleColor": const Color(0xFFBB15F6),
   };
 
   // List<Color> colorLevel1 = [
@@ -73,7 +72,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-          child: ListView(children: [
+          child: ListView(children: const [
         DrawerHeader(
           decoration: BoxDecoration(
             color: Colors.teal,
@@ -103,15 +102,15 @@ class _HomePageState extends State<HomePage> {
                 });
               })
         ],
-        title: Text(
+        title: const Text(
           "Recount",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.teal,
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
