@@ -8,13 +8,14 @@ class BadgeButton extends StatelessWidget {
   final Widget customWidget;
   final VoidCallback onTap;
   final bool isVisible;
-  final bool badgeIcon;
+  final bool isVisibleWidget;
+  // final bool badgeIcon;
   BadgeButton(
       {super.key,
       required this.customWidget,
       required this.onTap,
       required this.isVisible,
-      required this.badgeIcon});
+      required this.isVisibleWidget});
 
   // bool showBadge = false;
   @override
@@ -24,17 +25,20 @@ class BadgeButton extends StatelessWidget {
       valueListenable: showBadge,
       builder: (context, value, child) {
         return Obx(() {
-          return badges.Badge(
-            showBadge: screenController.showBadge.value,
-            position: badges.BadgePosition.topEnd(top: -10, end: -12),
-            badgeAnimation: badges.BadgeAnimation.fade(toAnimate: false),
-            onTap: onTap,
-            badgeContent: Icon(
-              (badgeIcon) ? Icons.remove : Icons.add,
-              color: Colors.white,
-              size: 10,
+          return Visibility(
+            visible: isVisibleWidget,
+            child: badges.Badge(
+              showBadge: screenController.showBadge.value,
+              position: badges.BadgePosition.topEnd(top: -10, end: -12),
+              badgeAnimation: badges.BadgeAnimation.fade(toAnimate: false),
+              onTap: onTap,
+              badgeContent: Icon(
+                (isVisible) ? Icons.remove : Icons.add,
+                color: Colors.white,
+                size: 10,
+              ),
+              child: customWidget,
             ),
-            child: customWidget,
           );
         });
       },

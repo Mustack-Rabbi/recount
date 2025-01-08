@@ -51,8 +51,10 @@ class IncDecScreenOne extends StatelessWidget {
           children: [
             Obx(
               () => BadgeButton(
-                badgeIcon: screenController.isVisibleRemoveButton.value,
+                isVisibleWidget: screenController.showBadge.value ||
+                    screenController.isVisibleRemoveButton.value,
                 isVisible: screenController.isVisibleRemoveButton.value,
+                // badgeIcon: screenController.isVisibleRemoveButton.value,
                 customWidget: IconButton(
                     onPressed: () {
                       screenController.decrement();
@@ -79,28 +81,27 @@ class IncDecScreenOne extends StatelessWidget {
                   ));
             }),
             Obx(
-              () => Visibility(
-                visible: screenController.isVisibleAddButton.value,
-                child: BadgeButton(
-                  badgeIcon: screenController.isVisibleAddButton.value,
-                  isVisible: screenController.isVisibleAddButton.value,
-                  customWidget: IconButton(
-                      onPressed: () {
-                        screenController.increment();
-                      },
-                      icon: Icon(Icons.add, color: color["deepPurpleColor"])),
-                  onTap: () {
-                    screenController.isVisibleAddButtonFunction();
+              () => BadgeButton(
+                isVisibleWidget: screenController.showBadge.value ||
+                    screenController.isVisibleAddButton.value,
+                // badgeIcon: screenController.isVisibleAddButton.value,
+                isVisible: screenController.isVisibleAddButton.value,
+                customWidget: IconButton(
+                    onPressed: () {
+                      screenController.increment();
+                    },
+                    icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+                onTap: () {
+                  screenController.isVisibleAddButtonFunction();
 
-                    print(screenController.isVisibleAddButton.value);
-                    // setState(() {
-                    //   isVisibleAddButton = !isVisibleAddButton;
-                    // });
-                    // print(isVisibleAddButton);
-                  },
-                ),
+                  print(screenController.isVisibleAddButton.value);
+                  // setState(() {
+                  //   isVisibleAddButton = !isVisibleAddButton;
+                  // });
+                  // print(isVisibleAddButton);
+                },
               ),
-            )
+            ),
           ],
         )
       ]),
