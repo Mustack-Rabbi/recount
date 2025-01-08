@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../button/switch_button.dart';
+
 class IncDecScreenThree extends StatefulWidget {
   const IncDecScreenThree({
     super.key,
@@ -46,97 +48,143 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    increment = 0;
-                  });
-                },
-                icon: Icon(
-                  Icons.refresh,
-                  color: color["deepPurpleColor"],
-                )),
-
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Center(
-                    child: Column(
-                      children: [
-                        Text(increment.toString(),
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
-                              color: textColor["textPrimaryColor"],
-                            )),
-                        Text(
-                          "${numberToWord[increment]}",
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
+        children: [
+          Expanded(
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Set"),
-                      Switch(
-                        value: true,
-                        onChanged: (value) {},
+                      IconButton(
+                          onPressed: () {
+                            setState(() {
+                              increment = 0;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.refresh,
+                            color: color["deepPurpleColor"],
+                          )),
+
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Text(increment.toString(),
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600,
+                                  color: textColor["textPrimaryColor"],
+                                )),
+                            Text(
+                              "${numberToWord[increment]}",
+                            ),
+                            SizedBox(
+                              height: 50,
+                            ),
+                          ],
+                        ),
                       ),
-                      Container(
-                        width: 100,
+
+                      // SizedBox(
+                      //   height: 20,
+                      // ),
+                    ]),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Set"),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    SwitchButton(
+                      isOn: false,
+                      onTap: () {},
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    // Switch(
+                    //   value: true,
+                    //   onChanged: (value) {},
+                    // ),
+                    Container(
+                      width: 80,
+                      height: 30,
+                      child: const Center(
                         child: TextField(
+                          cursorColor: Color(0xFFBB15F6),
+                          // textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'value',
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
+                            contentPadding: EdgeInsets.all(5),
+                            // labelText: 'value',
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                borderSide: BorderSide(
+                                    color: Color(0xFFBB15F6), width: 1)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                borderSide: BorderSide(
+                                    color: Color(0xFFBB15F6), width: 2)),
                           ),
                         ),
                       ),
-                      TextButton(
-                          onPressed: () {},
-                          child: Text("Save",
-                              style:
-                                  TextStyle(color: color["deepPurpleColor"])))
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
-            // SizedBox(
-            //   height: 20,
-            // ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // const SizedBox(
-                //   height: 30,
-                // ),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        increment--;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.remove,
-                      color: color["deepPurpleColor"],
-                    )),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        increment++;
-
-                        // print("numbr $increment");
-                      });
-                    },
-                    icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text("Save",
+                            style: TextStyle(
+                                color: color["deepPurpleColor"],
+                                fontWeight: FontWeight.w600)))
+                  ],
+                ),
               ],
-            )
-          ]),
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // const SizedBox(
+              //   height: 30,
+              // ),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      increment--;
+                    });
+                  },
+                  icon: Icon(
+                    Icons.remove,
+                    color: color["deepPurpleColor"],
+                  )),
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      increment++;
+
+                      // print("numbr $increment");
+                    });
+                  },
+                  icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
