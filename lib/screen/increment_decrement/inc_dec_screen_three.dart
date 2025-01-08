@@ -44,94 +44,99 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Container(
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    increment = 0;
+                  });
+                },
+                icon: Icon(
+                  Icons.refresh,
+                  color: color["deepPurpleColor"],
+                )),
 
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      increment = 0;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.refresh,
-                    color: color["deepPurpleColor"],
-                  )),
-            ],
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: Column(
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Center(
+                    child: Column(
+                      children: [
+                        Text(increment.toString(),
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600,
+                              color: textColor["textPrimaryColor"],
+                            )),
+                        Text(
+                          "${numberToWord[increment]}",
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
                     children: [
-                      Text(increment.toString(),
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w600,
-                            color: textColor["textPrimaryColor"],
-                          )),
-                      Text(
-                        "${numberToWord[increment]}",
+                      Text("Set"),
+                      Switch(
+                        value: true,
+                        onChanged: (value) {},
                       ),
+                      Container(
+                        width: 100,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'value',
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () {},
+                          child: Text("Save",
+                              style:
+                                  TextStyle(color: color["deepPurpleColor"])))
                     ],
                   ),
-                ),
-                Row(
-                  children: [
-                    Text("Set"),
-                    Switch(
-                      value: true,
-                      onChanged: (value) {},
-                    ),
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Password',
-                      ),
-                    )
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
 
-          // SizedBox(
-          //   height: 20,
-          // ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // const SizedBox(
-              //   height: 30,
-              // ),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      increment--;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.remove,
-                    color: color["deepPurpleColor"],
-                  )),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      increment++;
+            // SizedBox(
+            //   height: 20,
+            // ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // const SizedBox(
+                //   height: 30,
+                // ),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        increment--;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.remove,
+                      color: color["deepPurpleColor"],
+                    )),
+                IconButton(
+                    onPressed: () {
+                      setState(() {
+                        increment++;
 
-                      // print("numbr $increment");
-                    });
-                  },
-                  icon: Icon(Icons.add, color: color["deepPurpleColor"])),
-            ],
-          )
-        ]);
+                        // print("numbr $increment");
+                      });
+                    },
+                    icon: Icon(Icons.add, color: color["deepPurpleColor"])),
+              ],
+            )
+          ]),
+    );
   }
 }
