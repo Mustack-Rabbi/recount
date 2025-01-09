@@ -82,9 +82,42 @@ class ScreenController extends GetxController {
       "Eight",
       "Nine",
     ];
+    final List<String> teens = [
+      "Ten",
+      "Eleven",
+      "Twelve",
+      "Thirteen",
+      "Fourteen",
+      "Fifteen",
+      "Sixteen",
+      "Seventeen",
+      "Eighteen",
+      "Nineteen",
+    ];
+
+    final List<String> tens = [
+      "",
+      "",
+      "Twenty",
+      "Thirty",
+      "Forty",
+      "Fifty",
+      "Sixty",
+      "Seventy",
+      "Eighty",
+      "Ninety",
+    ];
 
     if (number < 10) {
       return units[number];
-    } else {}
+    } else if (number < 20) {
+      return teens[number - 10];
+    } else if (number < 100) {
+      int ten = number ~/ 10;
+      int unit = number % 10;
+      return "${tens[ten]} ${units[unit]}".trim();
+    } else {
+      return "Number Too Large";
+    }
   }
 }
