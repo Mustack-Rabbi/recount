@@ -5,8 +5,6 @@ class ScreenController extends GetxController {
 
   RxBool switchButton = false.obs;
 
-  // RxInt incDecScreenOneIncrement = 0.obs;
-
   // Screen One
   RxBool showBadgeSOne = false.obs;
   RxBool isVisibleAddButton = true.obs;
@@ -20,30 +18,15 @@ class ScreenController extends GetxController {
 
   increment(RxInt incrementValue) {
     incrementValue++;
-
-    // incDecScreenOneIncrement.value++;
   }
 
   decrement(RxInt decrementValue) {
     decrementValue--;
-    // incDecScreenOneIncrement.value--;
   }
 
   trueFalseFunction(RxBool x) {
     x.value = !x.value;
   }
-
-  // showBadgefunction() {
-  //   showBadge.value = !showBadge.value;
-  // }
-
-  // isVisibleAddButtonFunction() {
-  //   isVisibleAddButton.value = !isVisibleAddButton.value;
-  // }
-
-  // isVisibleRemoveButtonFunction() {
-  //   isVisibleRemoveButton.value = !isVisibleRemoveButton.value;
-  // }
 
   switchButtonFunction() {
     switchButton.value = !switchButton.value;
@@ -53,17 +36,9 @@ class ScreenController extends GetxController {
     screenThreeCounter++;
   }
 
-  // screenThreeCounterFunctionIncTest(RxInt screenThreeCPP) {
-  //   screenThreeCPP++;
-  // }
-
   screenThreeCounterFunctionDec() {
     screenThreeCounter--;
   }
-
-  // screenThreeCounterFunction() {
-  //   screenThreeCounter = RxInt(0);
-  // }
 
   // Number to Words
 
