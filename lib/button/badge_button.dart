@@ -25,7 +25,7 @@ class BadgeButton extends StatelessWidget {
       return Visibility(
         visible: isVisibleWidget,
         child: badges.Badge(
-          showBadge: screenController.showBadge.value,
+          showBadge: screenController.showBadgeSOne.value,
           position: badges.BadgePosition.topEnd(top: -10, end: -12),
           badgeAnimation: const badges.BadgeAnimation.fade(toAnimate: false),
           onTap: onTap,

@@ -48,20 +48,22 @@ class IncDecScreenOne extends StatelessWidget {
         children: [
           Obx(
             () => BadgeButton(
-              isVisibleWidget: screenController.showBadge.value ||
+              isVisibleWidget: screenController.showBadgeSOne.value ||
                   screenController.isVisibleRemoveButton.value,
               isVisible: screenController.isVisibleRemoveButton.value,
               // badgeIcon: screenController.isVisibleRemoveButton.value,
               customWidget: IconButton(
                   onPressed: () {
-                    screenController.decrement();
+                    screenController.decrement(screenController.CounterSOne);
                   },
                   icon: Icon(
                     Icons.remove,
                     color: color["deepPurpleColor"],
                   )),
               onTap: () {
-                screenController.isVisibleRemoveButtonFunction();
+                screenController
+                    .trueFalseFunction(screenController.isVisibleRemoveButton);
+                // screenController.increment(screenController.screenOneCounter);
                 // setState(() {
                 //   isVisibleRemoveButton = !isVisibleRemoveButton;
                 // });
@@ -69,8 +71,7 @@ class IncDecScreenOne extends StatelessWidget {
             ),
           ),
           Obx(() {
-            return Text(
-                screenController.incDecScreenOneIncrement.value.toString(),
+            return Text(screenController.CounterSOne.value.toString(),
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
@@ -79,17 +80,19 @@ class IncDecScreenOne extends StatelessWidget {
           }),
           Obx(
             () => BadgeButton(
-              isVisibleWidget: screenController.showBadge.value ||
+              isVisibleWidget: screenController.showBadgeSOne.value ||
                   screenController.isVisibleAddButton.value,
               // badgeIcon: screenController.isVisibleAddButton.value,
               isVisible: screenController.isVisibleAddButton.value,
               customWidget: IconButton(
                   onPressed: () {
-                    screenController.increment();
+                    screenController.increment(screenController.CounterSOne);
+                    // screenController.increment();
                   },
                   icon: Icon(Icons.add, color: color["deepPurpleColor"])),
               onTap: () {
-                screenController.isVisibleAddButtonFunction();
+                screenController
+                    .trueFalseFunction(screenController.isVisibleAddButton);
 
                 // print(screenController.isVisibleAddButton.value);
                 // setState(() {

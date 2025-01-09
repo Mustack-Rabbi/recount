@@ -143,7 +143,7 @@ class _FrameScreenState extends State<FrameScreen> {
                             color: color["deepPurpleColor"])),
                     Obx(
                       () => Expanded(
-                          child: (screenController.showBadge.value == false)
+                          child: (screenController.showBadgeSOne.value == false)
                               ? Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -212,11 +212,12 @@ class _FrameScreenState extends State<FrameScreen> {
                         //   });
                         // },
                         onPressed: () {
-                          screenController.showBadgefunction();
+                          screenController.trueFalseFunction(
+                              screenController.showBadgeSOne);
                         },
                         icon: Obx(
                           () => Icon(
-                            (screenController.showBadge.value == false)
+                            (screenController.showBadgeSOne.value == false)
                                 ? Icons.widgets
                                 : Icons.done,
                             color: color["deepPurpleColor"],
