@@ -6,10 +6,16 @@ class ScreenController extends GetxController {
   RxBool isVisibleAddButton = true.obs;
   RxBool showBadge = false.obs;
 
-  RxInt incDecScreenOneIncrement = 0.obs;
+  RxBool switchButton = false.obs;
 
-  increment() {
-    incDecScreenOneIncrement.value++;
+  RxInt incDecScreenOneIncrement = 0.obs;
+  RxInt screenThreeCounter = 0.obs;
+  RxInt screenThreeCounterGoal = 0.obs;
+
+  increment(RxInt incrementValue) {
+    incrementValue++;
+
+    // incDecScreenOneIncrement.value++;
   }
 
   decrement() {
@@ -26,5 +32,25 @@ class ScreenController extends GetxController {
 
   isVisibleRemoveButtonFunction() {
     isVisibleRemoveButton.value = !isVisibleRemoveButton.value;
+  }
+
+  switchButtonFunction() {
+    switchButton.value = !switchButton.value;
+  }
+
+  screenThreeCounterFunctionInc() {
+    screenThreeCounter++;
+  }
+
+  // screenThreeCounterFunctionIncTest(RxInt screenThreeCPP) {
+  //   screenThreeCPP++;
+  // }
+
+  screenThreeCounterFunctionDec() {
+    screenThreeCounter--;
+  }
+
+  screenThreeCounterFunction() {
+    screenThreeCounter = RxInt(0);
   }
 }

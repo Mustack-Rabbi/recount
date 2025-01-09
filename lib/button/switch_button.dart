@@ -1,7 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class SwitchButton extends StatelessWidget {
   final VoidCallback onTap;
@@ -55,50 +52,3 @@ class SwitchButton extends StatelessWidget {
     );
   }
 }
-
-
-
-//===============
-
-// {GestureDetector(
-//           onTap: () {
-//             setState(() {
-//               isOn = !isOn;
-//             });
-//           },
-//           child: Container(
-//             width: 100,
-//             height: 50,
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(25),
-//               color: isOn ? Colors.green : Colors.grey,
-//             ),
-//             child: Stack(
-//               children: [
-//                 AnimatedAlign(
-//                   alignment: isOn ? Alignment.centerRight : Alignment.centerLeft,
-//                   duration: Duration(milliseconds: 200),
-//                   child: Container(
-//                     width: 40,
-//                     height: 40,
-//                     margin: EdgeInsets.all(5),
-//                     decoration: BoxDecoration(
-//                       color: Colors.white,
-//                       shape: BoxShape.circle,
-//                     ),
-//                     child: Center(
-//                       child: Text(
-//                         isOn ? 'ON' : 'OFF',
-//                         style: TextStyle(
-//                           color: isOn ? Colors.green : Colors.grey,
-//                           fontWeight: FontWeight.bold,
-//                           fontSize: 12,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         )

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:recount/controller/screen_controller.dart';
 
 import '../../button/switch_button.dart';
 
@@ -44,8 +46,11 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
     9: "Nine"
   };
 
+  TextEditingController textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    ScreenController screenController = Get.put(ScreenController());
     return Container(
       child: Row(
         children: [
@@ -59,9 +64,7 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
                     children: [
                       IconButton(
                           onPressed: () {
-                            setState(() {
-                              increment = 0;
-                            });
+                            screenController.screenThreeCounter.value = 0;
                           },
                           icon: Icon(
                             Icons.refresh,
@@ -75,17 +78,58 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
                             SizedBox(
                               height: 50,
                             ),
-                            Text(increment.toString(),
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w600,
-                                  color: textColor["textPrimaryColor"],
-                                )),
-                            Text(
-                              "${numberToWord[increment]}",
+                            Obx(
+                              () => (screenController.switchButton.value &&
+                                      screenController.screenThreeCounter ==
+                                          screenController
+                                              .screenThreeCounterGoal.value)
+                                  ? Column(
+                                      children: [
+                                        Text(
+                                            "🎉 ${screenController.screenThreeCounter} 🎊",
+                                            style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xFFBB15F6),
+                                            )),
+                                        Text(
+                                          "Congratulations! Goal Complete.",
+                                          style: TextStyle(
+                                              color: Color(0xFFBB15F6),
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ],
+                                    )
+                                  : Column(
+                                      children: [
+                                        Text(
+                                            screenController.screenThreeCounter
+                                                .toString(),
+                                            style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w600,
+                                              color:
+                                                  textColor["textPrimaryColor"],
+                                            )),
+                                        Text(
+                                          "${numberToWord[increment]}",
+                                        ),
+                                      ],
+                                    ),
+                            ),
+                            Obx(
+                              () => Visibility(
+                                replacement: SizedBox(
+                                  height: 20,
+                                ),
+                                visible: screenController.switchButton.value,
+                                child: Text(
+                                  "Your Goal : ${0 < screenController.screenThreeCounterGoal.value ? screenController.screenThreeCounterGoal.value : "🎯"}",
+                                ),
+                              ),
                             ),
                             SizedBox(
-                              height: 50,
+                              height: 30,
                             ),
                           ],
                         ),
@@ -103,9 +147,13 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
                     const SizedBox(
                       width: 10,
                     ),
-                    SwitchButton(
-                      isOn: false,
-                      onTap: () {},
+                    Obx(
+                      () => SwitchButton(
+                        isOn: screenController.switchButton.value,
+                        onTap: () {
+                          screenController.switchButtonFunction();
+                        },
+                      ),
                     ),
                     const SizedBox(
                       width: 10,
@@ -117,10 +165,11 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
                     Container(
                       width: 80,
                       height: 30,
-                      child: const Center(
+                      child: Center(
                         child: TextField(
+                          controller: textController,
                           cursorColor: Color(0xFFBB15F6),
-                          // textAlign: TextAlign.center,
+                          textAlign: TextAlign.center,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius:
@@ -145,12 +194,33 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
                     const SizedBox(
                       width: 10,
                     ),
-                    TextButton(
-                        onPressed: () {},
-                        child: Text("Save",
-                            style: TextStyle(
-                                color: color["deepPurpleColor"],
-                                fontWeight: FontWeight.w600)))
+
+                    Visibility(
+                      visible: true,
+                      child: TextButton(
+                          onPressed: () {
+                            if (screenController.switchButton.value) {
+                              String inputText = textController.text;
+
+                              screenController.screenThreeCounterGoal.value =
+                                  int.tryParse(inputText)!;
+                              screenController.screenThreeCounter.value = 0;
+
+                              textController.clear();
+                            } else {
+                              String inputText = textController.text;
+
+                              screenController.screenThreeCounter.value =
+                                  int.tryParse(inputText)!;
+
+                              textController.clear();
+                            }
+                          },
+                          child: Text("Save",
+                              style: TextStyle(
+                                  color: color["deepPurpleColor"],
+                                  fontWeight: FontWeight.w600))),
+                    ),
                   ],
                 ),
               ],
@@ -162,23 +232,33 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
               // const SizedBox(
               //   height: 30,
               // ),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      increment--;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.remove,
-                    color: color["deepPurpleColor"],
-                  )),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      increment++;
 
-                      // print("numbr $increment");
-                    });
+              Obx(
+                () => Visibility(
+                  visible: !screenController.switchButton.value,
+                  child: IconButton(
+                      onPressed: () {
+                        screenController.screenThreeCounterFunctionDec();
+                        // setState(() {
+                        //   screenController.screenThreeCounterFunctionInc();
+                        // });
+                      },
+                      icon: Icon(
+                        Icons.remove,
+                        color: color["deepPurpleColor"],
+                      )),
+                ),
+              ),
+              IconButton(
+                  onPressed: () {
+                    screenController
+                        .increment(screenController.screenThreeCounter);
+                    // screenController.screenThreeCounterFunctionInc();
+                    // setState(() {
+                    //   increment++;
+
+                    //   // print("numbr $increment");
+                    // });
                   },
                   icon: Icon(Icons.add, color: color["deepPurpleColor"])),
             ],
