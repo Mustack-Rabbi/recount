@@ -80,6 +80,9 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
                             ),
                             Obx(
                               () => (screenController.switchButton.value &&
+                                      0 <
+                                          screenController
+                                              .screenThreeCounterGoal.value &&
                                       screenController.screenThreeCounter ==
                                           screenController
                                               .screenThreeCounterGoal.value)
@@ -111,8 +114,10 @@ class _IncDecScreenThreeState extends State<IncDecScreenThree> {
                                               color:
                                                   textColor["textPrimaryColor"],
                                             )),
-                                        Text(
-                                          "${numberToWord[increment]}",
+                                        Obx(
+                                          () => Text(
+                                            "${screenController.numberToWords(screenController.screenThreeCounter.value)}",
+                                          ),
                                         ),
                                       ],
                                     ),
