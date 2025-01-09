@@ -64,4 +64,27 @@ class ScreenController extends GetxController {
   // screenThreeCounterFunction() {
   //   screenThreeCounter = RxInt(0);
   // }
+
+  // Number to Words
+
+  numberToWords(number) {
+    if (number == 0) return "Zero";
+
+    final List<String> units = [
+      "",
+      "One",
+      "Two",
+      "Three",
+      "Four",
+      "Five",
+      "Six",
+      "Seven",
+      "Eight",
+      "Nine",
+    ];
+
+    if (number < 10) {
+      return units[number];
+    } else {}
+  }
 }

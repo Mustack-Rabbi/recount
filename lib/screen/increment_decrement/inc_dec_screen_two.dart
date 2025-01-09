@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:recount/controller/screen_controller.dart';
 
 class IncDecScreenTwo extends StatefulWidget {
   const IncDecScreenTwo({
@@ -24,26 +26,27 @@ class _IncDecScreenTwoState extends State<IncDecScreenTwo> {
     "vibrantPurpleColor": const Color(0xFFCB40FC),
     "deepPurpleColor": const Color(0xFFBB15F6),
   };
-  int increment = 0;
-  bool iconButtonAdd = true;
+  // int increment = 0;
+  // bool iconButtonAdd = true;
   // bool showDown = false;
   // bool widgetEdite = false;
 
-  final Map<int, String> numberToWord = {
-    0: "Zero",
-    1: "One",
-    2: "Two",
-    3: "Three",
-    4: "Four",
-    5: "Five",
-    6: "Six",
-    7: "Seven",
-    8: "Eight",
-    9: "Nine"
-  };
+  // final Map<int, String> numberToWord = {
+  //   0: "Zero",
+  //   1: "One",
+  //   2: "Two",
+  //   3: "Three",
+  //   4: "Four",
+  //   5: "Five",
+  //   6: "Six",
+  //   7: "Seven",
+  //   8: "Eight",
+  //   9: "Nine"
+  // };
 
   @override
   Widget build(BuildContext context) {
+    ScreenController screenController = Get.put(ScreenController());
     return Row(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
@@ -53,14 +56,23 @@ class _IncDecScreenTwoState extends State<IncDecScreenTwo> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(increment.toString(),
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                        color: textColor["textPrimaryColor"],
-                      )),
-                  Text(
-                    "${numberToWord[increment]}",
+                  Obx(
+                    () => Text(screenController.screenTwoCounter.toString(),
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w600,
+                          color: textColor["textPrimaryColor"],
+                        )),
+                  ),
+                  // Obx(
+                  //   () => Text(
+                  //     "${numberToWord[screenController.screenTwoCounter]}",
+                  //   ),
+                  // ),
+                  Obx(
+                    () => Text(
+                      "${screenController.numberToWords(screenController.screenTwoCounter.value)}",
+                    ),
                   ),
                 ],
               ),
@@ -74,9 +86,10 @@ class _IncDecScreenTwoState extends State<IncDecScreenTwo> {
             children: [
               IconButton(
                   onPressed: () {
-                    setState(() {
-                      increment = 0;
-                    });
+                    screenController.screenTwoCounter.value = 0;
+                    // setState(() {
+                    //   increment = 0;
+                    // });
                   },
                   icon: Icon(
                     Icons.refresh,
@@ -92,9 +105,11 @@ class _IncDecScreenTwoState extends State<IncDecScreenTwo> {
                     ),
                     IconButton(
                         onPressed: () {
-                          setState(() {
-                            increment--;
-                          });
+                          screenController
+                              .decrement(screenController.screenTwoCounter);
+                          // setState(() {
+                          //   increment--;
+                          // });
                         },
                         icon: Icon(
                           Icons.remove,
@@ -102,11 +117,13 @@ class _IncDecScreenTwoState extends State<IncDecScreenTwo> {
                         )),
                     IconButton(
                         onPressed: () {
-                          setState(() {
-                            increment++;
+                          screenController
+                              .increment(screenController.screenTwoCounter);
+                          // setState(() {
+                          //   increment++;
 
-                            // print("numbr $increment");
-                          });
+                          //   // print("numbr $increment");
+                          // });
                         },
                         icon: Icon(Icons.add, color: color["deepPurpleColor"])),
                   ],
