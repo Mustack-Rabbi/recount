@@ -16,6 +16,14 @@ class ScreenController extends GetxController {
   RxInt screenThreeCounter = 0.obs;
   RxInt screenThreeCounterGoal = 0.obs;
 
+  var items = ["Screen 1", "Screen 2", "Screen 3"].obs;
+
+  void reorderItems(int oldIndex, int newIndex) {
+    if (newIndex > oldIndex) newIndex--;
+    final item = items.removeAt(oldIndex);
+    items.insert(newIndex, item);
+  }
+
   increment(RxInt incrementValue) {
     incrementValue++;
   }

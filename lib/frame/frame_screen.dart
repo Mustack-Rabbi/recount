@@ -59,6 +59,8 @@ class _FrameScreenState extends State<FrameScreen> {
   // BadgeButton obj = BadgeButton();
   // bool widgetEdite = false;
 
+  // List<String> itemsList = ["item1", "item2", "item3"];
+
   @override
   Widget build(BuildContext context) {
     // obj.isVisible = widgetEdite;
@@ -137,10 +139,78 @@ class _FrameScreenState extends State<FrameScreen> {
               child: Center(
                 child: Row(
                   children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.more_vert,
-                            color: color["deepPurpleColor"])),
+                    // IconButton(
+                    //     onPressed: () {},
+                    //     icon: Icon(Icons.more_vert,
+                    //         color: color["deepPurpleColor"])),
+
+                    PopupMenuButton(
+                        icon: Icon(
+                          Icons.more_vert,
+                        ),
+                        itemBuilder: (BuildContext context) => [
+                              PopupMenuItem(
+                                  value: 0,
+                                  child: SizedBox(
+                                      width: 200,
+                                      height: 100,
+                                      child: Obx(
+                                        () => ReorderableListView(
+                                          children: [
+                                            for (int i = 0;
+                                                i <
+                                                    screenController
+                                                        .items.length;
+                                                i++)
+                                              ListTile(
+                                                key: ValueKey(
+                                                    screenController.items[i]),
+                                                title: Text(
+                                                    '${screenController.items[i]}'),
+                                                // leading:
+                                                //     Icon(Icons.drag_handle),
+                                                trailing: IconButton(
+                                                    onPressed: () {
+                                                      screenController.items
+                                                          .removeAt(i);
+                                                    },
+                                                    icon: Icon(Icons.delete)),
+                                              )
+                                          ],
+                                          onReorder:
+                                              screenController.reorderItems,
+                                        ),
+                                      )))
+                            ]),
+                    // Obx(
+                    //   () => PopupMenuButton(
+                    //       icon: Icon(
+                    //         Icons.more_vert,
+                    //         color: color["deepPurpleColor"],
+                    //       ),
+                    //       itemBuilder: (context) {
+                    //         return [
+                    //           PopupMenuItem(
+                    //             child: ReorderableListView(
+                    //               children: [
+                    //                 for (int i = 0; i < itemsList.length; i++)
+                    //                   ListTile(
+                    //                     title: Text('${itemsList[i]}'),
+                    //                   )
+                    //               ],
+                    //               onReorder: (int oldIndex, int newIndex) {
+                    //                 setState(() {
+                    //                   if (newIndex > oldIndex) newIndex--;
+
+                    //                   final item = itemsList.removeAt(oldIndex);
+                    //                   itemsList.insert(newIndex, item);
+                    //                 });
+                    //               },
+                    //             ),
+                    //           ),
+                    //         ];
+                    //       }),
+                    // ),
                     Obx(
                       () => Expanded(
                           child: (screenController.showBadgeSOne.value == false)
