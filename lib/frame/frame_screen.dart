@@ -145,14 +145,18 @@ class _FrameScreenState extends State<FrameScreen> {
                     //         color: color["deepPurpleColor"])),
 
                     PopupMenuButton(
+                        position: PopupMenuPosition.under,
+                        menuPadding: EdgeInsets.zero,
+                        color: Colors.green,
                         icon: Icon(
                           Icons.more_vert,
                         ),
                         itemBuilder: (BuildContext context) => [
                               PopupMenuItem(
-                                  value: 0,
+                                  padding: EdgeInsets.zero,
+                                  // value: 0,
                                   child: SizedBox(
-                                      width: 200,
+                                      width: 90,
                                       height: 100,
                                       child: Obx(
                                         () => ReorderableListView(
@@ -162,20 +166,22 @@ class _FrameScreenState extends State<FrameScreen> {
                                                     screenController
                                                         .items.length;
                                                 i++)
-                                              ListTile(
+                                              Container(
+                                                margin: const EdgeInsets.all(5),
                                                 key: ValueKey(
                                                     screenController.items[i]),
-                                                title: Text(
+                                                color: Colors.red,
+                                                height: 30,
+                                                width: 90,
+                                                child: Text(
                                                     '${screenController.items[i]}'),
-                                                // leading:
-                                                //     Icon(Icons.drag_handle),
-                                                trailing: IconButton(
-                                                    onPressed: () {
-                                                      screenController.items
-                                                          .removeAt(i);
-                                                    },
-                                                    icon: Icon(Icons.delete)),
-                                              )
+                                              ),
+                                            // ListTile(
+                                            //   key: ValueKey(
+                                            //       screenController.items[i]),
+                                            //   title: Text(
+                                            //       '${screenController.items[i]}'),
+                                            // )
                                           ],
                                           onReorder:
                                               screenController.reorderItems,
