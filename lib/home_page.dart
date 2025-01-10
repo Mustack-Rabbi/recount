@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screen/increment_decrement/inc_dec_screen.dart';
+import 'screen/tap_inc_dec/tap_inc_dec.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -118,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: 20,
               ),
-              IncDecScreen(),
+              TapIncDec(),
               // Section 2
               Text(
                 "Button",
