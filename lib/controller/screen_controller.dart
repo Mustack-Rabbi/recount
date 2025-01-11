@@ -4,7 +4,7 @@ class ScreenController extends GetxController {
   RxBool isVisible = false.obs;
 
   RxBool switchButton = false.obs;
-
+  // Increment & Decrement
   // Screen One
   RxBool showBadgeSOne = false.obs;
   RxBool isVisibleAddButton = true.obs;
@@ -15,6 +15,9 @@ class ScreenController extends GetxController {
   // Screen Three
   RxInt screenThreeCounter = 0.obs;
   RxInt screenThreeCounterGoal = 0.obs;
+
+  // Tap Increment & Decrement
+  RxInt TapIncDecCounter = 0.obs;
 
   var items = ["Screen 1", "Screen 2", "Screen 3"].obs;
 
