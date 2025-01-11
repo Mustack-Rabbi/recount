@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recount/controller/screen_controller.dart';
-import 'package:recount/main.dart';
 
 class FrameScreen extends StatefulWidget {
   final Widget displayScreen;
+  final String title;
   final int numberOfScreen;
   final int initialScreen;
   final VoidCallback previousScreenVCB;
@@ -23,6 +23,7 @@ class FrameScreen extends StatefulWidget {
     required this.previousScreenVCB,
     required this.nextScreenVCB,
     required this.widgetsVCB,
+    required this.title,
   });
 
   @override
@@ -86,7 +87,7 @@ class _FrameScreenState extends State<FrameScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Increment & Decrement",
+                Text(widget.title,
                     style: TextStyle(
                         color: color["lightPurpleColor"],
                         fontWeight: FontWeight.bold)),

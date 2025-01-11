@@ -63,6 +63,7 @@ class _IncDecScreenState extends State<IncDecScreen> {
     // numberOfScreen = numberOfScreen;
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       FrameScreen(
+        title: "Increment & Decrement",
         widgetsVCB: () {
           //  widgetEdite = !widgetEdite;
           //             widget.widgetEditeFunction!;

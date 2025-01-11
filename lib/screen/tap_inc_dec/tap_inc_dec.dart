@@ -59,6 +59,7 @@ class _TapIncDecState extends State<TapIncDec> {
     // numberOfScreen = numberOfScreen;
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       FrameScreen(
+        title: "Tap Increment & Decrement",
         widgetsVCB: () {
           //  widgetEdite = !widgetEdite;
           //             widget.widgetEditeFunction!;

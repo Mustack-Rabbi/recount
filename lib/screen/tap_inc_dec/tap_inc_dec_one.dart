@@ -5,6 +5,18 @@ class TapIncDecOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        print("Tap");
+      },
+      onDoubleTap: () {
+        print("Double Tap");
+      },
+      child: Center(
+          child: Text("Tap to increase, double-tap to decrease.",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500))),
+    );
   }
 }
