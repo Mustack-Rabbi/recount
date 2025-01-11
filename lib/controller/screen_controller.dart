@@ -23,6 +23,16 @@ class ScreenController extends GetxController {
 
   var items = ["Screen 1", "Screen 2", "Screen 3"].obs;
 
+  void updateTapPosition(TapDownDetails details) {
+    tapPosition.value = details.localPosition;
+  }
+
+  void resetTapPosition() {
+    Future.delayed(Duration(seconds: 2), () {
+      tapPosition.value = null;
+    });
+  }
+
   void reorderItems(int oldIndex, int newIndex) {
     if (newIndex > oldIndex) newIndex--;
     final item = items.removeAt(oldIndex);
