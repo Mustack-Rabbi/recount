@@ -16,34 +16,54 @@ class TapIncDecOne extends StatelessWidget {
         screenController.increment(screenController.TapIncDecCounter);
         // Get.snackbar("title", "message",
         //     snackPosition: SnackPosition.BOTTOM);
+        screenController.handleTap(details);
         screenController.updateTapPosition(details);
         screenController.resetTapPosition();
+
+        screenController.sTapTextFunction("+1");
         print(screenController.tapPosition.value);
         print(details);
         print("Tap");
       },
+
       onDoubleTap: () {
         screenController.decrement(screenController.TapIncDecCounter);
-        ;
-        print("Double Tap");
+
+        screenController.sTapTextFunction("-1");
+
+        screenController.resetTapPosition();
       },
-      onLongPress: () => screenController.TapIncDecCounter.value = 0,
+      onLongPress: () {
+        screenController.TapIncDecCounter.value = 0;
+        screenController.sTapTextFunction("reset");
+      },
       child: Stack(
         children: [
           Center(
               // child: Text("Tap to increase, double-tap to decrease.", // Tap to increase, double-tap to decrease, long press to reset.
               child: Obx(
-            () => Text("${screenController.TapIncDecCounter}",
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w500)),
+            () => Text(
+              "${screenController.TapIncDecCounter}",
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
           )),
           Obx(
             () {
+              // if (screenController.tapPosition.value != null)
               if (screenController.tapPosition.value != null) {
                 return Positioned(
                     top: screenController.tapPosition.value!.dy - 30,
                     left: screenController.tapPosition.value!.dx - 30,
-                    child: Text("+1"));
+                    child: Text(screenController.sTapText.value,
+                        style: const TextStyle(
+                          color: Color(0xFFBB15F6),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        )));
               }
               return SizedBox();
             },

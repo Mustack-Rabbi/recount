@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:async';
 
 class ScreenController extends GetxController {
   RxBool isVisible = false.obs;
 
   RxBool switchButton = false.obs;
+  // Timer? _timer;
   // Increment & Decrement
   // Screen One
   RxBool showBadgeSOne = false.obs;
@@ -18,20 +20,89 @@ class ScreenController extends GetxController {
   RxInt screenThreeCounterGoal = 0.obs;
 
   // Tap Increment & Decrement
-  Rx<Offset?> tapPosition = Rx<Offset?>(null);
+
+  // Rx<Offset?> tapPosition = Rx<Offset?>(null);
+  Rxn<Offset> tapPosition = Rxn<Offset>();
   RxInt TapIncDecCounter = 0.obs;
+  RxString sTapText = "".obs;
+  Timer? _tapTimer;
+  int _tapCount = 0;
 
   var items = ["Screen 1", "Screen 2", "Screen 3"].obs;
 
+  void handleTap(TapDownDetails details) {
+    _tapCount++;
+
+    if (_tapTimer != null && _tapTimer!.isActive) {
+      _tapTimer!.cancel();
+    }
+
+    _tapTimer = Timer(Duration(seconds: 2), () {
+      if (_tapCount == 1) {
+        increment(TapIncDecCounter);
+        sTapTextFunction("+1");
+      } else if (_tapCount == 2) {
+        decrement(TapIncDecCounter);
+        sTapTextFunction("-1");
+      }
+      _tapCount = 0;
+    });
+
+    updateTapPosition(details);
+    resetTapPosition();
+  }
+
+  // Counter Increment
+  // void increment(RxInt counter) {
+  //   counter.value++;
+  // }
+
+  // Counter Decrement
+  // void decrement(RxInt counter) {
+  //   counter.value--;
+  // }
+
+  // Tap Position Update
   void updateTapPosition(TapDownDetails details) {
     tapPosition.value = details.localPosition;
   }
 
+  // Tap Text Update
+  void sTapTextFunction(String value) {
+    sTapText.value = value;
+  }
+
+  // Reset Tap Position
   void resetTapPosition() {
     Future.delayed(Duration(seconds: 2), () {
       tapPosition.value = null;
+      sTapText.value = "";
     });
   }
+
+  // void updateTapPosition(TapDownDetails details) {
+  //   tapPosition.value = details.localPosition;
+  // }
+
+  // void resetTapPosition() {
+  //   Future.delayed(Duration(seconds: 2), () {
+  //     tapPosition.value = null;
+  //   });
+
+  //   // _timer?.cancel();
+
+  //   // _timer = Timer(Duration(seconds: 2), () {
+  //   //   tapPosition.value = null;
+  //   // });
+
+  //   // @override
+  //   // void onClose() {
+  //   //   _timer?.cancel();
+  //   //   super.onClose();
+  //   // }
+  // }
+
+  //
 
   void reorderItems(int oldIndex, int newIndex) {
     if (newIndex > oldIndex) newIndex--;
@@ -39,27 +110,27 @@ class ScreenController extends GetxController {
     items.insert(newIndex, item);
   }
 
-  increment(RxInt incrementValue) {
+  void increment(RxInt incrementValue) {
     incrementValue++;
   }
 
-  decrement(RxInt decrementValue) {
+  void decrement(RxInt decrementValue) {
     decrementValue--;
   }
 
-  trueFalseFunction(RxBool x) {
+  void trueFalseFunction(RxBool x) {
     x.value = !x.value;
   }
 
-  switchButtonFunction() {
+  void switchButtonFunction() {
     switchButton.value = !switchButton.value;
   }
 
-  screenThreeCounterFunctionInc() {
+  void screenThreeCounterFunctionInc() {
     screenThreeCounter++;
   }
 
-  screenThreeCounterFunctionDec() {
+  void screenThreeCounterFunctionDec() {
     screenThreeCounter--;
   }
 
