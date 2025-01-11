@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ScreenController extends GetxController {
@@ -17,6 +18,7 @@ class ScreenController extends GetxController {
   RxInt screenThreeCounterGoal = 0.obs;
 
   // Tap Increment & Decrement
+  Rx<Offset?> tapPosition = Rx<Offset?>(null);
   RxInt TapIncDecCounter = 0.obs;
 
   var items = ["Screen 1", "Screen 2", "Screen 3"].obs;
