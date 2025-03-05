@@ -1,6 +1,7 @@
 # recount
 
-A new Flutter project.
+![Screenshot from 2025-03-05 14-20-39](https://github.com/user-attachments/assets/11aa6c80-ad54-464d-b3ec-07cdd0c1ff59)
+
 
 ## Getting Started
 
