@@ -21,7 +21,7 @@ class TapIncDecOne extends StatelessWidget {
         screenController.updateTapPosition(details);
         screenController.resetTapPosition();
 
-        screenController.sTapTextFunction("+1");
+        // screenController.sTapTextFunction("+1"); // time e dici
         // print("one tap");
         // print(screenController.tapPosition.value);
         // print(details);
@@ -31,20 +31,20 @@ class TapIncDecOne extends StatelessWidget {
       onDoubleTap: () {
         // screenController.decrement(screenController.TapIncDecCounter);
         // eti timer er sathe decrement hbe..
-        screenController.sTapTextFunction("-1");
+        // screenController.sTapTextFunction("-1"); // time e dichi
 
         screenController.resetTapPosition();
       },
       onLongPress: () {
-        screenController.TapIncDecCounter.value = 0;
+        screenController.TapIncDecCounter.value = 0 - 1;
         screenController.sTapTextFunction("reset");
       },
       child: Stack(
         children: [
           Center(
-              // child: Text("Tap to increase, double-tap to decrease.", // Tap to increase, double-tap to decrease, long press to reset.
+              // child: Text("Tap to increase, double-tap to decrease.", // Tap to increase, double-tap to decrease, long press to reset. tapText == false;
               child: Obx(
-            () => (screenController.TapIncDecCounter == 0)
+            () => (screenController.tapText == false)
                 ? const Text(
                     "Tap (+1), double-tap (-1). \n long press to reset (0).",
                     style: TextStyle(color: Colors.black38, fontSize: 16),

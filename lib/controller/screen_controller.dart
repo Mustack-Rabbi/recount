@@ -29,6 +29,7 @@ class ScreenController extends GetxController {
   RxString sTapText = "".obs;
   Timer? _tapTimer;
   int _tapCount = 0;
+  RxBool tapText = false.obs;
 
   var items = ["Screen 1", "Screen 2", "Screen 3"].obs;
 
@@ -39,16 +40,55 @@ class ScreenController extends GetxController {
       _tapTimer!.cancel();
     }
 
-    _tapTimer = Timer(const Duration(seconds: 1, milliseconds: 500), () {
+    // _tapTimer?.cancel();
+
+    _tapTimer = Timer(const Duration(milliseconds: 500), () {
+      tapText.value = true;
+
       if (_tapCount == 1) {
-        increment(TapIncDecCounter);
-        sTapTextFunction("+1");
+        Future.delayed(const Duration(milliseconds: 500), () {
+          if (_tapCount == 1) {
+            increment(TapIncDecCounter);
+            // sTapTextFunction("+1");
+          }
+          _tapCount = 0;
+        });
       } else if (_tapCount == 2) {
         decrement(TapIncDecCounter);
-        sTapTextFunction("-1");
+        // sTapTextFunction("-1");
+        _tapCount = 0;
       }
-      _tapCount = 0;
+
+      sTapTextFunction(_tapCount == 1 ? '+1' : '-1');
     });
+
+//======================
+    // _tapTimer = Timer(const Duration(milliseconds: 1300), () {
+    //   tapText.value = true;
+
+    //   if (_tapCount == 1) {
+    //     increment(TapIncDecCounter);
+    //     sTapTextFunction("+1");
+    //   } else if (_tapCount == 2) {
+    //     decrement(TapIncDecCounter);
+    //     sTapTextFunction("-1");
+    //   }
+    //   _tapCount = 0;
+    // });
+//-------------------
+    // _tapTimer (){
+
+    //     tapText.value = true;
+    //   if (_tapCount == 1) {
+    //     increment(TapIncDecCounter);
+    //     sTapTextFunction("+1");
+    //   } else if (_tapCount == 2) {
+    //     decrement(TapIncDecCounter);
+    //     sTapTextFunction("-1");
+    //   }
+    //   _tapCount = 0;
+
+    // }
 
     updateTapPosition(details);
     resetTapPosition();
