@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:recount/home_page.dart';
 
+// Flutter 3.24.3 Dart 3.5.3
+
 void main() {
   runApp(const MyApp());
 }

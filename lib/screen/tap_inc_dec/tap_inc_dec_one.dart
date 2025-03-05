@@ -13,7 +13,8 @@ class TapIncDecOne extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       // onTap er poriborte onTapDown beborhar korle position data pawa jay
       onTapDown: (details) {
-        screenController.increment(screenController.TapIncDecCounter);
+        // screenController.increment(screenController.TapIncDecCounter);
+        // ekhane handleTap _tapTimer er moddhe increment hbe..
         // Get.snackbar("title", "message",
         //     snackPosition: SnackPosition.BOTTOM);
         screenController.handleTap(details);
@@ -21,14 +22,15 @@ class TapIncDecOne extends StatelessWidget {
         screenController.resetTapPosition();
 
         screenController.sTapTextFunction("+1");
-        print(screenController.tapPosition.value);
-        print(details);
-        print("Tap");
+        // print("one tap");
+        // print(screenController.tapPosition.value);
+        // print(details);
+        // print("Tap");
       },
 
       onDoubleTap: () {
-        screenController.decrement(screenController.TapIncDecCounter);
-
+        // screenController.decrement(screenController.TapIncDecCounter);
+        // eti timer er sathe decrement hbe..
         screenController.sTapTextFunction("-1");
 
         screenController.resetTapPosition();
@@ -42,14 +44,19 @@ class TapIncDecOne extends StatelessWidget {
           Center(
               // child: Text("Tap to increase, double-tap to decrease.", // Tap to increase, double-tap to decrease, long press to reset.
               child: Obx(
-            () => Text(
-              "${screenController.TapIncDecCounter}",
-              style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
+            () => (screenController.TapIncDecCounter == 0)
+                ? const Text(
+                    "Tap (+1), double-tap (-1). \n long press to reset (0).",
+                    style: TextStyle(color: Colors.black38, fontSize: 16),
+                  )
+                : Text(
+                    "${screenController.TapIncDecCounter}",
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    ),
+                  ),
           )),
           Obx(
             () {

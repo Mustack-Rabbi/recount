@@ -24,6 +24,8 @@ class ScreenController extends GetxController {
   // Rx<Offset?> tapPosition = Rx<Offset?>(null);
   Rxn<Offset> tapPosition = Rxn<Offset>();
   RxInt TapIncDecCounter = 0.obs;
+
+  ///rabbi
   RxString sTapText = "".obs;
   Timer? _tapTimer;
   int _tapCount = 0;
@@ -37,7 +39,7 @@ class ScreenController extends GetxController {
       _tapTimer!.cancel();
     }
 
-    _tapTimer = Timer(Duration(seconds: 2), () {
+    _tapTimer = Timer(const Duration(seconds: 1, milliseconds: 500), () {
       if (_tapCount == 1) {
         increment(TapIncDecCounter);
         sTapTextFunction("+1");
@@ -74,7 +76,7 @@ class ScreenController extends GetxController {
 
   // Reset Tap Position
   void resetTapPosition() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 1), () {
       tapPosition.value = null;
       sTapText.value = "";
     });
@@ -111,11 +113,11 @@ class ScreenController extends GetxController {
   }
 
   void increment(RxInt incrementValue) {
-    incrementValue++;
+    incrementValue = incrementValue++;
   }
 
   void decrement(RxInt decrementValue) {
-    decrementValue--;
+    decrementValue = decrementValue--;
   }
 
   void trueFalseFunction(RxBool x) {
